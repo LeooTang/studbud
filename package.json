@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/LeooTang/studbud/issues"
   },
-  "homepage": "https://github.com/LeooTang/studbud#readme"
+  "homepage": "https://github.com/LeooTang/studbud#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
