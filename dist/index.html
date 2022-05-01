@@ -1,15 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello, world!</title>
+  <title>Hello world!</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="">
   <!-- <link rel="icon" href="img/favicon.png"> -->
-  <link rel="stylesheet" href="/index.6ed2f507.css"> 
+  <link rel="stylesheet" href="/index.b2a7a68e.css"> 
 </head>
-<body>
-  <h1>Hello, world!</h1>
-</body>
+
+<nav>
+  <a><span>HOME</span></a>
+  <a><span>DISCOVER</span></a>
+</nav>
+
+<div id="page1" class="page-container">
+  <h1>Page 1</h1>
+  <nav class="sub-nav">
+    <ul class="nav-links">
+      <li class="nav-item"><a href="#page1-1" class="active">Page 1-1</a></li>
+      <li class="nav-item"><a href="#page1-2" class="active">Page 1-2</a></li>
+    </ul>
+  </nav>
+
+  <div id="page1-1" class="sub-page-container">
+    <h2>Page 1-1</h2>
+    <div id="task-grid">
+      <form id="taskform">
+        <label for="task">Task:</label>
+        <input type="text" name="task" id="taskInput">
+  
+        <br>
+      <!-- Date input -->
+        <label for="dueDate">Due Date: </label>
+        <input type="date" name="dueDate" id="dueDateInput">
+        <br>
+      <!-- Time input -->
+      <label for="completionTime">Completion Time: </label>
+        <input type="time" name="completionTime" id="completionTimeInput">
+  
+        <br>
+  
+      <label for="estimatedTime">Estimated completion time (in mins):</label>
+      <input type="number" name="estimatedTime" id="estimatedTimeInput">
+      <!-- Priority -->
+      <br>
+  
+      <label for="priority">Task Priority:</label>
+      <select name="prority" id="priorityInput">
+        <option value="">Select one</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+  
+      <br>
+  
+        <button type="submit">Submit</button>
+      </form>
+      <div id="tasklist">
+        <p id="emptylist">You have not added any tasks yet</p>
+        <ul></ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="page1-2" class="sub-page-container" style="display:none;">
+    <h2>Page 1-2</h2>
+  </div>
+</div>
 <script src="/index.737c1fa2.js"></script>
 </html>
