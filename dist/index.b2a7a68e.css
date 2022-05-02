@@ -1,3 +1,7 @@
+body {
+  background-color: red;
+}
+
 #task-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -15,7 +19,7 @@
   width: 100%;
 }
 
-.tasklist {
+#tasklist {
   grid-area: tasklist;
 }
 /*# sourceMappingURL=index.b2a7a68e.css.map */
