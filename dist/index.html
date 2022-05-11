@@ -1,76 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello world!</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="">
-  <!-- <link rel="icon" href="img/favicon.png"> -->
-  <link rel="stylesheet" href="/index.b2a7a68e.css"> 
-</head>
-
-<nav>
-  <a><span>HOME</span></a>
-  <a><span>DISCOVER</span></a>
-</nav>
-
+    <meta charset="utf-8">
+    <meta name="home" content="Studbud">
+    <title>Studbud homepage</title>
+    <link rel="stylesheet" href="/index.b2a7a68e.css"> 
+  </head>
+  
 <body>
-<div id="page1" class="page-container">
-  <h1>Page 1</h1>
-  <nav class="sub-nav">
-    <ul class="nav-links">
-      <li class="nav-item"><a href="#page1-1" class="active">Page 1-1</a></li>
-      <li class="nav-item"><a href="#page1-2" class="active">Page 1-2</a></li>
-    </ul>
-  </nav>
 
-  <div id="page1-1" class="sub-page-container">
-    <h2>Page 1-1</h2>
-    <div id="task-grid">
+  <header>
+  <nav>
+        <a href="/index.html"><span>HOME</span></a>
+        <a href="/dictionary.html"><span>DICTIONARY</span></a>
+    
+      </nav>
+    </header>
+  
+    <div class="container">
+        <div class="kanban-heading">
+            <strong class="kanban-heading-text">Kanban Board</strong>
+        </div>
+        <div class="kanban-board">
+            <div class="kanban-block" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>To Do</strong>
+                <div class="task-button-block">
+                    <button id="task-button" onclick="createTask()">Create new task</button>
+                </div>
+
+              <p id="emptyList">You have not added any tasks yet</p>
+                
+            </div>
+          
+            <div class="kanban-block" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>In Progress</strong>
+            </div>
+          
+            <div class="kanban-block" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>Done</strong>
+            </div>
+
+          <div class="kanban-block" id="review" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>Review</strong>
+            </div>
+
+        <div class="create-new-task-block" id="create-new-task-block">
+
+        
       <form id="taskform">
-        <label for="task">Task:</label>
-        <input type="text" name="task" id="taskInput">
+        <span class="form-row">
+        <label class="form-row-label" for="task">Task:</label>
+        <input class="form-row-input" type="text" name="task" id="taskInput">
+        </span>
   
         <br>
       <!-- Date input -->
-        <label for="dueDate">Due Date: </label>
-        <input type="date" name="dueDate" id="dueDateInput">
+        <span class="form-row">
+        <label class="form-row-label" for="dueDate">Due Date: </label>
+        <input class="form-row-input" type="date" name="dueDate" id="dueDateInput">
+        </span>
+        
         <br>
       <!-- Time input -->
-      <label for="completionTime">Completion Time: </label>
-        <input type="time" name="completionTime" id="completionTimeInput">
+        <span class="form-row">
+      <label class="form-row-label" for="completionTime">Completion Time: </label>
+        <input class="form-row-input" type="time" name="completionTime" id="completionTimeInput">
+        </span>
   
         <br>
-  
-      <label for="estimatedTime">Estimated completion time (in mins):</label>
-      <input type="number" name="estimatedTime" id="estimatedTimeInput">
+
+        <span class="form-row">
+      <label class="form-row-label" for="estimatedTime">Estimated completion time (in mins):</label>
+      <input class="form-row-input" type="number" name="estimatedTime" id="estimatedTimeInput">
+        </span>
       <!-- Priority -->
       <br>
+
+        <span class="form-row">
   
-      <label for="priority">Task Priority:</label>
-      <select name="prority" id="priorityInput">
+      <label class="form-row-label" for="priority">Task Priority:</label>
+      <select class="form-row-input" name="prority" id="priorityInput">
         <option value="">Select one</option>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
+        </span>
+
+        <select class="form-row-input" name="task-status" id="task-status">
+                        <option value="todo">To Do</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
   
       <br>
+
+        <span class="form-row-buttons">
+                    <button id="edit-button" onclick="editTask()">Edit</button></span>
+                    <button type="submit" id="save-button">Save</button>
+                    <button id="cancel-button" onclick="createTask()">Cancel</button>
+                
   
-        <button type="submit">Submit</button>
       </form>
       <div id="tasklist">
-        <p id="emptyList">You have not added any tasks yet</p>
+        
         <ul></ul>
       </div>
-    </div>
-  </div>
+        
+          </div>
 
-  <div id="page1-2" class="sub-page-container" style="display:none;">
-    <h2>Page 1-2</h2>
-  </div>
-</div>
-</body>
-
-<script src="/index.807884c9.js" defer=""></script>
+    <script src="/index.807884c9.js" defer=""></script>
+</div></div></body>
 </html>

@@ -39,6 +39,7 @@ function addTask(taskDescription, dueDate, estimatedTime, priorityRating, comple
   taskListArray.push(task);
   console.log(taskListArray);
   renderTask(task);
+  
 }
 
 function renderTask(task){
@@ -46,11 +47,20 @@ function renderTask(task){
   updateEmpty();
 
   // Create HTML elements
-  let item = document.createElement("li");
+  let item = document.createElement("div");
   item.setAttribute('data-id', task.id);
-  item.innerHTML = "<p>" + task.taskDescription + "</p>";
 
-  tasklist.appendChild(item);
+  var taskName = document.getElementById("taskInput").value 
+              var othername = document.getElementById("dueDateInput").value;
+            item.innerHTML += `
+            <div class="task" id=taskName.toLowerCase().split(" ").join("")>
+                <span id=taskName>${taskName}</span>
+                <br>
+                <span id=otherName>${othername}</span>
+            </div>`  
+  
+
+  todo.appendChild(item);
 
   // Extra Task DOM elements
   let delButton = document.createElement("button");

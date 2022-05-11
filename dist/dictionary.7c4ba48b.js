@@ -140,12 +140,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"h1pKh":[function(require,module,exports) {
+})({"kdmia":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "69f74e7f31319ffd";
-module.bundle.HMR_BUNDLE_ID = "97362287807884c9";
+module.bundle.HMR_BUNDLE_ID = "d5be95967c4ba48b";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -454,83 +454,8 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"jBxsx":[function(require,module,exports) {
-var _tasklist = require("./components/tasklist");
+},{}],"3RVmp":[function(require,module,exports) {
 
-},{"./components/tasklist":"fQa2z"}],"fQa2z":[function(require,module,exports) {
-const form = document.getElementById("taskform");
-const button = document.querySelector("#taskform > button");
-var taskInput = document.getElementById("taskInput");
-var tasklist = document.getElementById("tasklist");
-var dueDateInput = document.getElementById("dueDateInput");
-var completionTimeInput = document.getElementById("completionTimeInput");
-var estimatedTimeInput = document.getElementById("estimatedTimeInput");
-var priorityInput = document.getElementById("priorityInput");
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    let task = taskInput.value;
-    let dueDate = dueDateInput.value;
-    let completionTime = completionTimeInput.value;
-    let estimatedTime = estimatedTimeInput.value;
-    let priorityRating = priorityInput.options[priorityInput.selectedIndex].value;
-    if (task) addTask(task, dueDate, estimatedTime, priorityRating, completionTime, false);
-});
-var taskListArray = [];
-function addTask(taskDescription, dueDate, estimatedTime, priorityRating, completionTime, completionStatus) {
-    let d = new Date();
-    let dateCreated = d.getFullYear();
-    let task = {
-        id: Date.now(),
-        taskDescription,
-        dueDate,
-        dateCreated,
-        estimatedTime,
-        completionTime,
-        priorityRating,
-        estimatedTime,
-        completionStatus
-    };
-    taskListArray.push(task);
-    console.log(taskListArray);
-    renderTask(task);
-}
-function renderTask(task) {
-    updateEmpty();
-    // Create HTML elements
-    let item = document.createElement("div");
-    item.setAttribute('data-id', task.id);
-    var taskName = document.getElementById("taskInput").value;
-    var othername = document.getElementById("dueDateInput").value;
-    item.innerHTML += `\n            <div class="task" id=taskName.toLowerCase().split(" ").join("")>\n                <span id=taskName>${taskName}</span>\n                <br>\n                <span id=otherName>${othername}</span>\n            </div>`;
-    todo.appendChild(item);
-    // Extra Task DOM elements
-    let delButton = document.createElement("button");
-    let delButtonText = document.createTextNode("Delete Task");
-    delButton.appendChild(delButtonText);
-    item.appendChild(delButton);
-    // Event Listeners for DOM elements
-    delButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        let id = event.target.parentElement.getAttribute('data-id');
-        let index = taskListArray.findIndex((task1)=>task1.id === Number(id)
-        );
-        removeItemFromArray(taskListArray, index);
-        console.log(taskListArray);
-        updateEmpty();
-        item.remove();
-    });
-    // Clear the input form
-    form.reset();
-}
-function removeItemFromArray(arr, index) {
-    if (index > -1) arr.splice(index, 1);
-    return arr;
-}
-function updateEmpty() {
-    if (taskListArray.length > 0) document.getElementById('emptyList').style.display = 'none';
-    else document.getElementById('emptyList').style.display = 'block';
-}
+},{}]},["kdmia","3RVmp"], "3RVmp", "parcelRequire60da")
 
-},{}]},["h1pKh","jBxsx"], "jBxsx", "parcelRequire60da")
-
-//# sourceMappingURL=index.807884c9.js.map
+//# sourceMappingURL=dictionary.7c4ba48b.js.map
