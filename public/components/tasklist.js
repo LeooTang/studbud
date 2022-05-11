@@ -39,7 +39,6 @@ function addTask(taskDescription, dueDate, estimatedTime, priorityRating, comple
   taskListArray.push(task);
   console.log(taskListArray);
   renderTask(task);
-  
 }
 
 function renderTask(task){
