@@ -30,6 +30,8 @@ function createTask(){
     }
 }
 
+document.getElementById("task-button").addEventListener("click", createTask);
+
 function saveTask(){
   
   updateEmpty();
