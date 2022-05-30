@@ -140,12 +140,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"h1pKh":[function(require,module,exports) {
+})({"dvZ2K":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "69f74e7f31319ffd";
-module.bundle.HMR_BUNDLE_ID = "97362287807884c9";
+module.bundle.HMR_BUNDLE_ID = "05f9593b99d6e682";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -454,67 +454,13 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"jBxsx":[function(require,module,exports) {
+},{}],"03Be6":[function(require,module,exports) {
 var _tasklist = require("./components/tasklist");
 var _kanban = require("./components/kanban");
-document.getElementById("task-button").addEventListener("click", createTask);
+var _localstorage = require("./localstorage");
+var _tab = require("./components/tab");
 
-},{"./components/tasklist":"fQa2z","./components/kanban":"aDhes"}],"fQa2z":[function(require,module,exports) {
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.currentTarget.appendChild(document.getElementById(data));
-}
-function createTask() {
-    var x = document.getElementById("inprogress");
-    var y = document.getElementById("done");
-    var z = document.getElementById("create-new-task-block");
-    var i = document.getElementById("review");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        y.style.display = "block";
-        i.style.display = "block";
-        z.style.display = "none";
-    } else {
-        x.style.display = "none";
-        y.style.display = "none";
-        i.style.display = "none";
-        z.style.display = "flex";
-    }
-}
-function saveTask() {
-    updateEmpty();
-    // var saveButton = document.getElementById("save-button");
-    // var editButton = document.getElementById("edit-button");
-    // if (saveButton.style.display === "none") {
-    //     saveButton.style.display = "block";
-    //     editButton.style.display = "none";
-    // } else{
-    //     saveButton.style.display = "none";
-    //     editButton.style.display = "block";
-    // }
-    let todo = document.getElementById("todo");
-    var taskName = document.getElementById("taskInput").value;
-    var othername = document.getElementById("dueDateInput").value;
-    todo.innerHTML += `\n  <div class="task" id="${taskName.toLowerCase().split(" ").join("")}" draggable="true" ondragstart="drag(event)">\n      <span id=taskName>${taskName}</span>\n      <br>\n      <span id=otherName>${othername}</span>\n  </div>`;
-}
-function editTask() {
-    var saveButton = document.getElementById("save-button");
-    var editButton = document.getElementById("edit-button");
-    if (saveButton.style.display === "none") {
-        saveButton.style.display = "block";
-        editButton.style.display = "none";
-    } else {
-        saveButton.style.display = "none";
-        editButton.style.display = "block";
-    }
-}
+},{"./components/tasklist":"8p0n0","./components/kanban":"ikPP4","./localstorage":"grXFK","./components/tab":"7tQzc"}],"8p0n0":[function(require,module,exports) {
 const form = document.getElementById("taskform");
 const button = document.querySelector("#taskform > button");
 var taskInput = document.getElementById("taskInput");
@@ -550,6 +496,7 @@ function addTask(taskDescription, dueDate, estimatedTime, priorityRating, comple
     taskListArray.push(task);
     console.log(taskListArray);
     renderTask(task);
+    addToLocalStorage(task);
 }
 function renderTask(task) {
     updateEmpty();
@@ -559,7 +506,20 @@ function renderTask(task) {
     var taskName = document.getElementById("taskInput").value;
     var othername = document.getElementById("dueDateInput").value;
     item.innerHTML += `\n            <div class="task" id=taskName.toLowerCase().split(" ").join("")>\n                <span id=taskName>${taskName}</span>\n                <br>\n                <span id=otherName>${othername}</span>\n            </div>`;
-    todo.appendChild(item);
+    var status = document.getElementById("task-status").value;
+    switch(status){
+        case 'todo':
+            todo.appendChild(item);
+            break;
+        case 'inprogress':
+            inprogress.appendChild(item);
+            break;
+        case 'done':
+            done.appendChild(item);
+            break;
+        case 'review':
+            review.appendChild(item);
+    }
     // Extra Task DOM elements
     let delButton = document.createElement("button");
     let delButtonText = document.createTextNode("Delete Task");
@@ -588,7 +548,7 @@ function updateEmpty() {
     else document.getElementById('emptyList').style.display = 'block';
 }
 
-},{}],"aDhes":[function(require,module,exports) {
+},{}],"ikPP4":[function(require,module,exports) {
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
@@ -617,7 +577,6 @@ function createTask() {
         z.style.display = "flex";
     }
 }
-document.getElementById("task-button").addEventListener("click", createTask);
 function saveTask() {
     updateEmpty();
     // var saveButton = document.getElementById("save-button");
@@ -645,7 +604,33 @@ function editTask() {
         editButton.style.display = "block";
     }
 }
+document.getElementById("task-button").addEventListener("click", createTask);
+document.getElementById("save-button").addEventListener("click", createTask);
+document.getElementById("cancel-button").addEventListener("click", createTask);
+document.getElementById("edit-button").addEventListener("click", editTask);
 
-},{}]},["h1pKh","jBxsx"], "jBxsx", "parcelRequire60da")
+},{}],"grXFK":[function(require,module,exports) {
+function addToLocalStorage(task) {
+    // conver the array to string then store it.
+    localStorage.setItem("kanbanTask", JSON.stringify(taskListArray));
+    // render them to screen
+    renderTask(task);
+}
+var data = localStorage.getItem("kanbanTask");
+data = JSON.parse(data);
+console.log(data);
+renderTask(data);
 
-//# sourceMappingURL=index.807884c9.js.map
+},{}],"7tQzc":[function(require,module,exports) {
+const toggler = document.querySelector('.help');
+const inquiry = document.querySelector('.inquiry');
+/*
+ * Toggles on and off the 'active' class on the menu
+ * and the toggler button.
+ */ toggler.addEventListener('click', ()=>{
+    inquiry.classList.toggle('active');
+});
+
+},{}]},["dvZ2K","03Be6"], "03Be6", "parcelRequire60da")
+
+//# sourceMappingURL=index.99d6e682.js.map

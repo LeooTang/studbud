@@ -25,7 +25,7 @@
             <div class="kanban-block" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <strong>To Do</strong>
                 <div class="task-button-block">
-                    <button id="task-button" ><span>Create new task</span></button>
+                    <button id="task-button"><span>Create new task</span></button>
                 </div>
 
               <p id="emptyList">You have not added any tasks yet</p>
@@ -91,14 +91,15 @@
                         <option value="todo">To Do</option>
                         <option value="inprogress">In Progress</option>
                         <option value="done">Done</option>
+                        <option value="review">Review</option>
                     </select>
   
       <br>
 
         <span class="form-row-buttons">
-                    <button id="edit-button" onclick="editTask()">Edit</span>
-                    <button type="submit" id="save-button" >Save</span></button>
-                    <button id="cancel-button" onclick="createTask()">Cancel</span></button>
+                    <button id="edit-button"><span>Edit</span></button>
+                    <button type="submit" id="save-button" ><span>Save</span></button>
+                    <button id="cancel-button"><span>Cancel</span></button>
                 </span>
   
       </form>
@@ -109,7 +110,27 @@
         
           </div>
 
-          <script src="script.js" type="module">
+
+          <footer>
+            <div class="inquiry">
+              <div id= "stopwatch" class="stopwatch">
+                <div class="timerDisplay">
+                  00 : 00 : 00 : 000
+               </div>
+               <div class="stopwatch-buttons">
+                <button id="pauseTimer">Pause</button>
+                <button id="startTimer">Start</button>
+                <button id="resetTimer">Reset</button>
+              </div>
+ 
+              </div>
+        </div>
+        <div class="help" style="font-size: 50px"></div>
+  
+  </footer>
+  
+
+          <script src="js/script.js" type="module">
           </script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+header {
+  background-color: #293749;
+  width: 100%;
+}
+
+nav {
+    display: flex;
+}
+
+nav span {
+  margin-top: 0px; 
+  color: white;
+  width: 150px;
+  height: 40px;
+  line-height:40px;
+  float: left;
+  display: block;
+  text-align: center;
+  background-color: #293749;
+  justify-content: center;
+  right: 300px;
+  top: 25px;
+  /*transition property*/
+  transition: background .3s, color .3s, cursor .3s;    
+}
+
+nav span:hover{
+  color: bisque;
+  background-color: black;
+  cursor: pointer;
+}

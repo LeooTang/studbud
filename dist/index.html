@@ -91,15 +91,16 @@
                         <option value="todo">To Do</option>
                         <option value="inprogress">In Progress</option>
                         <option value="done">Done</option>
+                        <option value="review">Review</option>
                     </select>
   
       <br>
 
         <span class="form-row-buttons">
-                    <button id="edit-button" onclick="editTask()">Edit</button></span>
-                    <button type="submit" id="save-button">Save</button>
-                    <button id="cancel-button" onclick="createTask()">Cancel</button>
-                
+                    <button id="edit-button"><span>Edit</span></button>
+                    <button type="submit" id="save-button"><span>Save</span></button>
+                    <button id="cancel-button"><span>Cancel</span></button>
+                </span>
   
       </form>
       <div id="tasklist">
@@ -109,7 +110,27 @@
         
           </div>
 
-          <script src="/index.807884c9.js" defer="">// modules are defined as an array
+
+          <footer>
+            <div class="inquiry">
+              <div id="stopwatch" class="stopwatch">
+                <div class="timerDisplay">
+                  00 : 00 : 00 : 000
+               </div>
+               <div class="stopwatch-buttons">
+                <button id="pauseTimer">Pause</button>
+                <button id="startTimer">Start</button>
+                <button id="resetTimer">Reset</button>
+              </div>
+ 
+              </div>
+        </div>
+        <div class="help" style="font-size: 50px"></div>
+  
+  </footer>
+  
+
+          <script src="/index.99d6e682.js" defer="">// modules are defined as an array
 // [ module function, map of requires ]
 //
 // map of requires is short require name -> numeric require
@@ -251,12 +272,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"5UQYw":[function(require,module,exports) {
+})({"gwGbB":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4e5dac8afe405db7";
-module.bundle.HMR_BUNDLE_ID = "a2285b1d6002922e";
+module.bundle.HMR_BUNDLE_ID = "9d0245a581a93bff";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -565,7 +586,7 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}]},["5UQYw"], null, "parcelRequire60da")
+},{}]},["gwGbB"], null, "parcelRequire60da")
 
 </script>
 </div></div></body>

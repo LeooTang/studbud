@@ -30,7 +30,7 @@ function createTask(){
     }
 }
 
-document.getElementById("task-button").addEventListener("click", createTask);
+
 
 function saveTask(){
   
@@ -67,3 +67,8 @@ function editTask(){
         editButton.style.display = "block";
     }
 }
+
+document.getElementById("task-button").addEventListener("click", createTask);
+document.getElementById("save-button").addEventListener("click", createTask);
+document.getElementById("cancel-button").addEventListener("click", createTask);
+document.getElementById("edit-button").addEventListener("click", editTask);

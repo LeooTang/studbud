@@ -1,21 +1,70 @@
-#task-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "taskform tasklist";
-}
-
-#taskform {
-    grid-area: taskform;
-    max-width: 300px;
-    margin: 0 auto;
-
-    label{
-        display: block;
-        width: 100%;
-    }
-}
-
-#tasklist {
-    grid-area: tasklist;
-}
+.form-row {
+    display: flex;
+    flex-direction: row;
+    margin: 0.1rem;
+  }
+  
+  .form-row-label {
+    width:100%;
+    padding: 0.2rem;
+    padding-right: 0.2rem;
+    border: 0.1rem solid black;
+    border-right: 0;
+    border-radius: 0.2rem 0rem 0rem 0rem;
+  }
+  
+  .form-row-input {
+    border: 0.1rem solid black;
+    border-radius: 0rem 0.2rem 0.2rem 0.2rem;
+    width: 100%;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  .form-row-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.2rem;
+  }
+  
+  #edit-button,
+  #save-button,
+  #cancel-button {
+    margin: 0.2rem 0rem 0.1rem 0rem;
+    background-color: white;
+    border-radius: 0.2rem;
+    width: 49.2%;
+    border: 0.25rem solid black;
+    padding: 0.5rem 2.7rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+  }
+  
+  #edit-button {
+    display: none;
+  }
+  
+  #task-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "taskform tasklist";
+  }
+  
+  #taskform {
+      grid-area: taskform;
+      max-width: 300px;
+      margin: 0 auto;
+  
+      label{
+          display: block;
+          width: 100%;
+      }
+  }
+  
+  #tasklist {
+      grid-area: tasklist;
+  }
