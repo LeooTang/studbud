@@ -48,16 +48,16 @@ function renderTask(task){
   updateEmpty();
 
   // Create HTML elements
-  let item = document.createElement("div");
+  let item = document.createElement("li");
   item.setAttribute('data-id', task.id);
 
-  var taskName = document.getElementById("taskInput").value 
-              var othername = document.getElementById("dueDateInput").value;
+  var taskName = document.getElementById("taskInput").value
+              var dueDate = document.getElementById("dueDateInput").value;
             item.innerHTML += `
             <div class="task" id=taskName.toLowerCase().split(" ").join("")>
-                <span id=taskName>${taskName}</span>
+                <span id=taskName>${taskName}</span>                
                 <br>
-                <span id=otherName>${othername}</span>
+                <span id=dueDate>${dueDate}</span>   
             </div>`  
   
 

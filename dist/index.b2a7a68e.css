@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   background-color: #FCFAF2;
 }
@@ -11,39 +12,52 @@ body {
 }
 
 footer {
-  height: 100px;
-  background-color: #87b5c4;
-  display: flex;
+  height: 120px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background-image: linear-gradient(0deg, rgb(247, 247, 247) 23.8%, rgb(255, 217, 184) 98%);
 }
 
 header {
   background-color: #293749;
   width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 nav {
   display: flex;
 }
 
+nav img {
+  height: 50px;
+  width: 65px;
+  margin: 5px 10px;
+}
+
 nav span {
-  margin-top: 0px;
+  margin: 0px;
   color: white;
   width: 150px;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 60px;
   float: left;
   display: block;
   text-align: center;
   background-color: #293749;
   justify-content: center;
   right: 300px;
-  top: 25px;
   /*transition property*/
   transition: background 0.3s, color 0.3s, cursor 0.3s;
 }
 
 nav span:hover {
-  color: bisque;
+  color: #FFBB00;
   background-color: black;
   cursor: pointer;
 }
@@ -120,6 +134,7 @@ textarea {
 
 .kanban-heading {
   display: flex;
+  margin: 10px;
   flex-direction: row;
   justify-content: center;
   font-family: sans-serif;
@@ -147,18 +162,31 @@ textarea {
   min-width: 14rem;
   min-height: 4.5rem;
   border-radius: 0.3rem;
+  box-shadow: 3px 5px 3px #cfcfcf;
 }
 
 .kanban-block {
   background-color: #EEEEEC;
 }
 
+.kanbanName {
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 18px;
+  border-radius: 0.2rem;
+  text-align: center;
+}
+
 .task {
   background-color: white;
-  margin: 0.2rem 0rem 0.3rem 0rem;
+  margin: 10px;
   border: 0.1rem solid black;
   border-radius: 0.2rem;
   padding: 0.5rem 0.2rem 0.5rem 2rem;
+}
+
+#taskName {
+  font-weight: bold;
 }
 
 #task-button {
@@ -179,5 +207,346 @@ textarea {
   background: #ffaf00;
   width: 65%;
   flex-direction: column;
+}
+
+.help {
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 50px;
+  line-height: 35px;
+  color: white;
+  height: 40px;
+  width: 40px;
+  background-color: #FFBB00;
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  border: 3px solid white;
+  padding: 10px;
+  /*transition property*/
+  transition: background 0.3s, border 0.3s, line-height 0.3s, cursor 0.3s, font-size 0.3s, height 0.3s, width 0.3s, right 0.3s;
+}
+
+.help:after {
+  content: "×";
+  position: absolute;
+  right: 11px;
+  color: #FFBB00;
+  z-index: -1;
+}
+
+.help:hover {
+  border: 2px solid grey;
+  line-height: 35px;
+  font-size: 52px;
+  height: 42px;
+  width: 42px;
+  cursor: pointer;
+}
+
+.tab {
+  position: fixed;
+  top: 65px;
+  bottom: 0px;
+  right: -60%;
+  color: #005c9c;
+  background: white;
+  border: 5px solid #FFBB00;
+  width: 20%;
+  height: 70%;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  /*transition property*/
+  transition: 0.3s right cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.tab.active {
+  right: 0;
+}
+
+.tab .form {
+  font-size: 15px;
+}
+
+.help.active {
+  right: 26%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.help .material-icons {
+  color: white;
+}
+
+.help .material-icons.active {
+  color: rgba(0, 0, 0, 0);
+}
+
+#timerSwitch {
+  position: fixed;
+  top: -30%;
+  left: 20%;
+  background-color: #FFBB00;
+}
+
+.stopwatch {
+  background-color: #ffffff;
+  width: 40%;
+  min-width: 500px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 20px 0;
+  padding-bottom: 50px;
+  border-radius: 10px;
+  display: block;
+}
+
+.timerDisplay {
+  position: relative;
+  width: 92%;
+  background: #ffffff;
+  left: 4%;
+  padding: 40px 0;
+  font-family: arial, monospace;
+  color: #0381bb;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 139, 253, 0.25);
+}
+
+.stopwatch-buttons {
+  width: 90%;
+  margin: 60px auto 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.stopwatch-buttons button {
+  width: 120px;
+  height: 45px;
+  background-color: #F38686;
+  color: #ffffff;
+  border: none;
+  font-family: Bryant Condensed;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.stopwatch-buttons button:nth-last-child(2) {
+  background-color: #8BEBA4;
+}
+
+.stopwatch-buttons button:nth-last-child(1) {
+  background-color: #CECECE;
+}
+
+.stopwatch-buttons button:hover {
+  background-color: grey;
+}
+
+.pomodoro {
+  display: none;
+  background-color: #ffffff;
+  width: 40%;
+  min-width: 500px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 20px 0;
+  padding-bottom: 50px;
+  border-radius: 10px;
+}
+
+progress {
+  border-radius: 2px;
+  width: 80%;
+  height: 12px;
+  margin-left: 50px;
+}
+
+.timer {
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  text-align: center;
+}
+
+.clock {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 100px;
+  line-height: 1;
+  margin: auto;
+  font-family: Bryant Condensed, sans-serif;
+}
+
+.mode-button {
+  font-size: 16px;
+  height: 28px;
+  cursor: pointer;
+  box-shadow: none;
+  font-weight: 300;
+  color: black;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+}
+
+.mode-button.active {
+  border-color: black;
+}
+
+.main-button {
+  cursor: pointer;
+  box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+  font-size: 22px;
+  height: 55px;
+  text-transform: uppercase;
+  color: hsl(175deg, 26%, 41%);
+  font-weight: bold;
+  width: 200px;
+  background-color: white;
+  border-width: initial;
+  border-style: none;
+  margin: 20px 0px 0px;
+  padding: 0px 12px;
+  border-radius: 4px;
+  transition: color 0.5s ease-in-out 0s;
+}
+
+button:focus, button:active {
+  outline: none;
+}
+
+.main-button.active {
+  transform: translateY(6px);
+  box-shadow: none;
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.music-container {
+  background-color: #f8f5eb;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
+  display: flex;
+  padding: 20px 30px;
+  position: relative;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.image-container {
+  position: relative;
+  width: 110px;
+}
+
+.image-container::after {
+  content: "";
+  background-color: #f8f5eb;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 50%;
+  bottom: 40%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cover-image {
+  width: inherit;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: none;
+}
+
+.cover-image.active {
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.music-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.action-btn {
+  background-color: #f8f5eb;
+  border: 0;
+  color: orange;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.play-btn, .before-btn, .next-btn {
+  background-color: #f8f5eb;
+  border: 0;
+  color: orange;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.action-btn:focus {
+  outline: 0;
+}
+
+.music-info {
+  background-color: #f8f5eb;
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 5px;
+  left: 20%;
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 150px;
+}
+
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  width: 50%;
+  outline: none;
+  height: 8px;
+}
+
+.duration {
+  background-color: #fe8daa;
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
 }
 /*# sourceMappingURL=index.b2a7a68e.css.map */

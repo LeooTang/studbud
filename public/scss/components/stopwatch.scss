@@ -9,6 +9,7 @@
     padding: 20px 0;
     padding-bottom: 50px;
     border-radius: 10px;
+    display: block;
 }
 
 .timerDisplay{
@@ -17,7 +18,7 @@
     background: #ffffff;
     left: 4%;
     padding: 40px 0;
-    font-family: 'Roboto mono',monospace;
+    font-family: arial, monospace;
     color: #0381bb;
     font-size: 40px;
     display: flex;
@@ -37,10 +38,10 @@
 .stopwatch-buttons button{
     width: 120px;
     height: 45px;
-    background-color: #205e94;
+    background-color: #F38686;
     color: #ffffff;
     border: none;
-    font-family: 'Poppins',sans-serif;
+    font-family: Bryant Condensed;
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
@@ -48,8 +49,12 @@
 }
 
 .stopwatch-buttons button:nth-last-child(2){
-    background-color: #d23332;
-  }
-  .stopwatch-buttons button:nth-last-child(1){
-    background-color: #20b380;
-  }
+    background-color: #8BEBA4;
+}
+.stopwatch-buttons button:nth-last-child(1){
+    background-color: #CECECE;
+}
+
+.stopwatch-buttons button:hover{
+    background-color: grey;
+}

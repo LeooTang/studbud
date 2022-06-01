@@ -1,4 +1,8 @@
 import './components/tasklist';
 import './components/kanban';
-import './localstorage';
+import './components/stopwatch'
 import './components/tab';
+import './components/dictionary';
+import './localstorage';
+import './components/pomodoro';
+import './components/musicplayer';

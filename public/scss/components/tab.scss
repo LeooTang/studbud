@@ -1,82 +1,86 @@
-footer h3{
-    font: bold 25px Segoe Print;
-    margin: auto;
-    position: relative;
+.help {
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 50px;
+  line-height: 35px;
+  color: white;
+  
+  height: 40px;
+  width: 40px;
+  background-color: #FFBB00;
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  border: 3px solid white;
+  padding: 10px;
+  /*transition property*/
+  transition: background .3s, border .3s,line-height .3s, cursor .3s, font-size .3s, height .3s, width .3s, right .3s;
+}
+
+.help:after {
+    content: "\00d7";
+    position: absolute;
+    right: 11px;
+    color: #FFBB00;
+    z-index: -1;
   }
   
-footer button{
-    position: relative;
-    margin: auto;
-    border-width: 2px;
-    border-color: #073B4C;
-    color: white;
-    background-color: #cddea2;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px 20px;
-    /*transition property*/
-    transition: background .3s, color .3s, cursor .3s;
-}
-  
-footer button:hover {
-    background: #118AB2;
-    color: black;
+.help:hover {
+    border:2px solid grey; 
+    line-height: 35px;
+    font-size: 52px;
+    height: 42px;
+    width: 42px;
     cursor: pointer;
 }
   
-.help:after {
-    content: '?';
-    display: inline-block;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-align: center;
-    font-size: 40px;
-    line-height: 40px;
-    color: white;
-    
-    height: 40px;
-    width: 40px;
-    background-color: rgb(103, 209, 151);
-    border-radius: 50%;
+.tab {
     position: fixed;
-    right: 20px;
-    bottom: 60px;
-    border: 3px solid white;
-    padding: 10px;
-    /*transition property*/
-    transition: background .3s, line-height .3s, cursor .3s, font-size .3s, height .3s, width .3s;
-}
-  
-.help:hover:after {
-      background: blue;
-      line-height: 50px;
-      font-size: 50px;
-      height: 50px;
-      width: 50px;
-      cursor: pointer;
-}
-  
-.inquiry {
-    position: fixed;
+    top:65px;
     bottom: 0px ;
     right: -60%;;
     color: #005c9c;
     background: white;
-    border:5px solid #555; 
+    border:5px solid #FFBB00; 
     width: 20%;
-    height: 100%;
+    height: 70%;
     padding: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    z-index: 10;
+  
     /*transition property*/
-    transition: 300ms right cubic-bezier(0.77, 0, 0.175, 1);
+    transition: .3s right cubic-bezier(0.77, 0, 0.175, 1);
 }
   
-.inquiry.active {
+.tab.active {
     right: 0;
 }
   
-.inquiry .form {
+.tab .form {
     font-size: 15px;
+}
+
+.help.active{
+    right: 26%;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  
+.help .material-icons {
+    color: white;
+}
+
+.help .material-icons.active {
+    color: rgba(0, 0, 0, 0);
+}
+
+#timerSwitch{
+  position:fixed;
+  top: -30%;
+  left: 20%;
+  background-color: #FFBB00;
+
 }

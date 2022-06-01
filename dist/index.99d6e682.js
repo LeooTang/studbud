@@ -457,10 +457,14 @@ function hmrAcceptRun(bundle, id) {
 },{}],"03Be6":[function(require,module,exports) {
 var _tasklist = require("./components/tasklist");
 var _kanban = require("./components/kanban");
-var _localstorage = require("./localstorage");
+var _stopwatch = require("./components/stopwatch");
 var _tab = require("./components/tab");
+var _dictionary = require("./components/dictionary");
+var _localstorage = require("./localstorage");
+var _pomodoro = require("./components/pomodoro");
+var _musicplayer = require("./components/musicplayer");
 
-},{"./components/tasklist":"8p0n0","./components/kanban":"ikPP4","./localstorage":"grXFK","./components/tab":"7tQzc"}],"8p0n0":[function(require,module,exports) {
+},{"./components/tasklist":"8p0n0","./components/kanban":"ikPP4","./components/stopwatch":"cDUD9","./components/tab":"7tQzc","./components/dictionary":"7H6tn","./localstorage":"grXFK","./components/pomodoro":"cZcq5","./components/musicplayer":"6kgM4"}],"8p0n0":[function(require,module,exports) {
 const form = document.getElementById("taskform");
 const button = document.querySelector("#taskform > button");
 var taskInput = document.getElementById("taskInput");
@@ -501,11 +505,11 @@ function addTask(taskDescription, dueDate, estimatedTime, priorityRating, comple
 function renderTask(task) {
     updateEmpty();
     // Create HTML elements
-    let item = document.createElement("div");
+    let item = document.createElement("li");
     item.setAttribute('data-id', task.id);
     var taskName = document.getElementById("taskInput").value;
-    var othername = document.getElementById("dueDateInput").value;
-    item.innerHTML += `\n            <div class="task" id=taskName.toLowerCase().split(" ").join("")>\n                <span id=taskName>${taskName}</span>\n                <br>\n                <span id=otherName>${othername}</span>\n            </div>`;
+    var dueDate = document.getElementById("dueDateInput").value;
+    item.innerHTML += `\n            <div class="task" id=taskName.toLowerCase().split(" ").join("")>\n                <span id=taskName>${taskName}</span>                \n                <br>\n                <span id=dueDate>${dueDate}</span>   \n            </div>`;
     var status = document.getElementById("task-status").value;
     switch(status){
         case 'todo':
@@ -609,27 +613,336 @@ document.getElementById("save-button").addEventListener("click", createTask);
 document.getElementById("cancel-button").addEventListener("click", createTask);
 document.getElementById("edit-button").addEventListener("click", editTask);
 
-},{}],"grXFK":[function(require,module,exports) {
-function addToLocalStorage(task) {
-    // conver the array to string then store it.
-    localStorage.setItem("kanbanTask", JSON.stringify(taskListArray));
-    // render them to screen
-    renderTask(task);
+},{}],"cDUD9":[function(require,module,exports) {
+let [milliseconds, seconds, minutes, hours] = [
+    0,
+    0,
+    0,
+    0
+];
+let timerRef = document.querySelector('.timerDisplay');
+let int = null;
+document.getElementById('startTimer').addEventListener('click', ()=>{
+    if (int !== null) clearInterval(int);
+    int = setInterval(displayTimer, 10);
+});
+document.getElementById('pauseTimer').addEventListener('click', ()=>{
+    clearInterval(int);
+});
+document.getElementById('resetTimer').addEventListener('click', ()=>{
+    clearInterval(int);
+    [milliseconds, seconds, minutes, hours] = [
+        0,
+        0,
+        0,
+        0
+    ];
+    timerRef.innerHTML = '00 : 00 : 00 : 000 ';
+});
+function displayTimer() {
+    milliseconds += 10;
+    if (milliseconds == 1000) {
+        milliseconds = 0;
+        seconds++;
+        if (seconds == 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes == 60) {
+                minutes = 0;
+                hours++;
+            }
+        }
+    }
+    let h = hours < 10 ? "0" + hours : hours;
+    let m = minutes < 10 ? "0" + minutes : minutes;
+    let s = seconds < 10 ? "0" + seconds : seconds;
+    let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+    timerRef.innerHTML = ` ${h} : ${m} : ${s} : ${ms}`;
 }
-var data = localStorage.getItem("kanbanTask");
-data = JSON.parse(data);
-console.log(data);
-renderTask(data);
 
 },{}],"7tQzc":[function(require,module,exports) {
 const toggler = document.querySelector('.help');
-const inquiry = document.querySelector('.inquiry');
+const tab = document.querySelector('.tab');
+const icon = document.querySelector('.material-icons');
 /*
  * Toggles on and off the 'active' class on the menu
  * and the toggler button.
  */ toggler.addEventListener('click', ()=>{
-    inquiry.classList.toggle('active');
+    toggler.classList.toggle('active');
+    tab.classList.toggle('active');
+    icon.classList.toggle('active');
 });
+function switchTimer() {
+    var x = document.getElementById("stopwatch");
+    var z = document.getElementById("pomodoro");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        z.style.display = "none";
+    } else {
+        z.style.display = "block";
+        x.style.display = "none";
+    }
+}
+document.getElementById("stopwatchSwitch").addEventListener("click", switchTimer);
+document.getElementById("pomodoroSwitch").addEventListener("click", switchTimer);
+
+},{}],"grXFK":[function(require,module,exports) {
+function addToLocalStorage(task) {
+    // conver the array to string then store it.
+    localStorage.setItem("kanbanTask", JSON.stringify(taskListArray));
+// render them to screen
+}
+
+},{}],"cZcq5":[function(require,module,exports) {
+const timer = {
+    pomodoro: 25,
+    shortBreak: 5,
+    longBreak: 15,
+    longBreakInterval: 4,
+    sessions: 0
+};
+let interval;
+const mainButton = document.getElementById('js-btn');
+mainButton.addEventListener('click', ()=>{
+    const { action  } = mainButton.dataset;
+    if (action === 'start') startTimer();
+    else stopTimer();
+});
+const modeButtons = document.querySelector('#js-mode-buttons');
+modeButtons.addEventListener('click', handleMode);
+function getRemainingTime(endTime) {
+    const currentTime = Date.parse(new Date());
+    const difference = endTime - currentTime;
+    const total = Number.parseInt(difference / 1000, 10);
+    const minutes = Number.parseInt(total / 60 % 60, 10);
+    const seconds = Number.parseInt(total % 60, 10);
+    return {
+        total,
+        minutes,
+        seconds
+    };
+}
+function startTimer() {
+    let { total  } = timer.remainingTime;
+    const endTime = Date.parse(new Date()) + total * 1000;
+    if (timer.mode === 'pomodoro') timer.sessions++;
+    mainButton.dataset.action = 'stop';
+    mainButton.textContent = 'stop';
+    mainButton.classList.add('active');
+    interval = setInterval(function() {
+        timer.remainingTime = getRemainingTime(endTime);
+        updateClock();
+        total = timer.remainingTime.total;
+        if (total <= 0) {
+            clearInterval(interval);
+            switch(timer.mode){
+                case 'pomodoro':
+                    if (timer.sessions % timer.longBreakInterval === 0) switchMode('longBreak');
+                    else switchMode('shortBreak');
+                    break;
+                default:
+                    switchMode('pomodoro');
+            }
+            if (Notification.permission === 'granted') {
+                const text = timer.mode === 'pomodoro' ? 'Get back to work!' : 'Take a break!';
+                new Notification(text);
+            }
+            document.querySelector(`[data-sound="${timer.mode}"]`).play();
+            startTimer();
+        }
+    }, 1000);
+}
+function stopTimer() {
+    clearInterval(interval);
+    mainButton.dataset.action = 'start';
+    mainButton.textContent = 'start';
+    mainButton.classList.remove('active');
+}
+function updateClock() {
+    const { remainingTime  } = timer;
+    const minutes = `${remainingTime.minutes}`.padStart(2, '0');
+    const seconds = `${remainingTime.seconds}`.padStart(2, '0');
+    const min = document.getElementById('js-minutes');
+    const sec = document.getElementById('js-seconds');
+    min.textContent = minutes;
+    sec.textContent = seconds;
+    const progress = document.getElementById('js-progress');
+    progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
+}
+function switchMode(mode) {
+    timer.mode = mode;
+    timer.remainingTime = {
+        total: timer[mode] * 60,
+        minutes: timer[mode],
+        seconds: 0
+    };
+    document.querySelectorAll('button[data-mode]').forEach((e)=>e.classList.remove('active')
+    );
+    document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+    document.getElementById('js-progress').setAttribute('max', timer.remainingTime.total);
+    updateClock();
+}
+function handleMode(event) {
+    const { mode  } = event.target.dataset;
+    if (!mode) return;
+    switchMode(mode);
+    stopTimer();
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+    if ('Notification' in window) {
+        if (Notification.permission !== 'granted' && Notification.permission !== 'denied') Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') new Notification('Awesome! You will be notified at the start of each session');
+        });
+    }
+    switchMode('pomodoro');
+});
+
+},{}],"6kgM4":[function(require,module,exports) {
+const musicContainer = document.getElementById('music-container');
+const play = document.getElementById('play');
+const previous = document.getElementById('prev');
+const next = document.getElementById('next');
+const slider = document.getElementById('progress');
+const progressContainer = document.getElementById('progress-container');
+const title = document.getElementById('title');
+const track_image = document.getElementById('cover');
+const currTime = document.querySelector('#currTime');
+const durTime = document.querySelector('#durTime');
+const toggler = document.querySelector('.play-btn');
+const tab = document.querySelector('.cover-image');
+/*
+ * Toggles on and off the 'active' class on the menu
+ * and the toggler button.
+ */ toggler.addEventListener('click', ()=>{
+    tab.classList.toggle('active');
+});
+let timer;
+let autoplay = 0;
+let index_no = 0;
+let Playing_song = false;
+//create a audio Element
+let track = document.createElement('audio');
+//All songs list
+let All_song = [
+    {
+        name: "forest",
+        path: "music/forest.mp3",
+        img: 'public/images/1.jpg'
+    },
+    {
+        name: "just relax",
+        path: "public/music/just relax.mp3",
+        img: "public/images/just relax.jpg"
+    },
+    {
+        name: "morning garden",
+        path: "public/music/morning garden.mp3",
+        img: "public/images/morning garden.jpg"
+    }, 
+];
+// function load the track
+function load_track(index_no1) {
+    clearInterval(timer);
+    // reset_slider();
+    track.src = All_song[index_no1].path;
+    title.innerHTML = All_song[index_no1].name;
+    cover.src = All_song[index_no1].img;
+    track.load();
+    timer = setInterval(range_slider, 1000);
+// total.innerHTML = All_song.length;
+// present.innerHTML = index_no + 1;
+}
+load_track(index_no);
+//mute sound function
+function mute_sound() {
+    track.volume = 0;
+    volume.value = 0;
+    volume_show.innerHTML = 0;
+}
+// checking.. the song is playing or not
+function justplay() {
+    if (Playing_song == false) playsong();
+    else pausesong();
+}
+// reset song slider
+function reset_slider() {
+    slider.value = 0;
+}
+// play song
+function playsong() {
+    track.play();
+    Playing_song = true;
+    play.innerHTML = '<i class="material-icons"  style="font-size:60px;">pause</i>';
+}
+//pause song
+function pausesong() {
+    track.pause();
+    Playing_song = false;
+    play.innerHTML = '<i class="material-icons"  style="font-size:60px;">play_circle</i>';
+}
+// next song
+function next_song() {
+    if (index_no < All_song.length - 1) {
+        index_no += 1;
+        load_track(index_no);
+    } else {
+        index_no = 0;
+        load_track(index_no);
+    }
+}
+// previous song
+function previous_song() {
+    if (index_no > 0) {
+        index_no -= 1;
+        load_track(index_no);
+    // playsong();
+    } else {
+        index_no = All_song.length;
+        load_track(index_no);
+    // playsong();
+    }
+}
+// change volume
+function volume_change() {
+    volume_show.innerHTML = recent_volume.value;
+    track.volume = recent_volume.value / 100;
+}
+// change slider position 
+function change_duration() {
+    slider_position = track.duration * (slider.value / 100);
+    track.currentTime = slider_position;
+}
+// autoplay function
+function autoplay_switch() {
+    if (autoplay == 1) {
+        autoplay = 0;
+        auto_play.style.background = "rgba(255,255,255,0.2)";
+    } else {
+        autoplay = 1;
+        auto_play.style.background = "#FF8A65";
+    }
+}
+function range_slider() {
+    let position = 0;
+    // update slider position
+    if (!isNaN(track.duration)) {
+        position = track.currentTime * (100 / track.duration);
+        slider.value = position;
+    }
+    // function will run when the song is over
+    if (track.ended) {
+        play.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+        if (autoplay == 1) {
+            index_no += 1;
+            load_track(index_no);
+            playsong();
+        }
+    }
+}
+document.getElementById("play").addEventListener("click", justplay);
+document.getElementById("prev").addEventListener("click", previous_song);
+document.getElementById("next").addEventListener("click", next_song);
+document.getElementById("duration_slider").addEventListener("click", change_duration);
 
 },{}]},["dvZ2K","03Be6"], "03Be6", "parcelRequire60da")
 
