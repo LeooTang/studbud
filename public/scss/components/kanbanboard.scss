@@ -1,76 +1,144 @@
 .kanban-heading {
-    display: flex;
-    margin: 10px;
-    flex-direction: row;
-    justify-content: center;
-    font-family: sans-serif;
-  }
-  
+  display: flex;
+  position: absolute;
+  margin: 30px 10px;
+  flex-direction: row;
+  justify-content: center;
+  font-family: Gadugi;
+  left: 0px;
+}
+
 .kanban-board {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: sans-serif;
-  }
-  
-  .kanban-heading-text {
-    font-size: 1.8rem;
-    background-color: tomato;
-    padding: 0.8rem 1.7rem;
-    border-radius: 0.5rem;
-    margin: 1rem;
-  }
-  
-  .kanban-block,
-  .create-new-task-block {
-    padding: 0.6rem;
-    width: 22%;
-    min-width: 14rem;
-    min-height: 4.5rem;
-    border-radius: 0.3rem;
-    box-shadow: 3px 5px 3px #cfcfcf;
-  }
-  
-  .kanban-block{
-    background-color: #EEEEEC;
-  }
+  position: absolute;
+  top: 22%;
+  left: 10%;
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
+  font-family: sans-serif;
+}
 
-  .kanbanName {
-    background-color: white;
-    margin-bottom: 10px;
-    padding: 18px;
-    border-radius: 0.2rem;
-    text-align: center;
-  }
-  
-  .task {
-    background-color: white;
-    margin: 10px;
-    border: 0.1rem solid black;
-    border-radius: 0.2rem;
-    padding: 0.5rem 0.2rem 0.5rem 2rem;
-  }
+.kanban-heading-text {
+  font-size: 20px;
+  background-color: #FFBB00;
+  padding: 0.8rem 1.7rem;
+  border-radius: 0.5rem;
+  margin: 20px;
+}
 
-  #taskName {
-    font-weight: bold;
-  }
-  
-  #task-button {
-    margin: 0.2rem 0rem 0.1rem 0rem;
-    background-color: white;
-    border-radius: 0.2rem;
-    width: 100%;
-    border: 0.25rem solid black;
-    padding: 0.5rem 2.7rem;
-    border-radius: 0.3rem;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .create-new-task-block {
-    display: none;
-    /* display: flex; */
-    background: #ffaf00;
-    width: 65%;
-    flex-direction: column;
-  }
+.kanban-heading-text:hover {
+  cursor: pointer;
+  background-color: #CCCCCC;
+  border: none;
+
+}
+
+.kanban-block,
+.create-new-task-block {
+  margin: 10px;
+  padding: 0.6rem;
+  width: 260px;
+  min-height: 4.5rem;
+  border-radius: 0.3rem;
+  box-shadow: 3px 5px 3px #cfcfcf;
+}
+
+.kanban-block {
+  background-color: #EEEEEC;
+}
+
+.kanbanName {
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 18px;
+  border-radius: 0.2rem;
+  text-align: center;
+}
+
+.task {
+  background-color: white;
+  margin: 15px;
+  border-left: 6px solid #ffaf00;
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.2rem 0.5rem 2rem;
+  box-shadow: 3px 3px 3px #cfcfcf;
+}
+
+.eachTask button{
+  margin-left: 65%;
+  background-color: #CCCCCC;
+  height:20px;
+  font-size: 10px;
+  border-radius: 0.2rem;
+  font-family: Bryant Condensed, Arial;
+}
+
+#taskName {
+  font-family: Bryant Condensed, Arial;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#dueDate {
+  position:relative;
+  font-family: Bryant Condensed, Arial;
+  font-size: 15px;
+  color:#e76f51;
+  right: 0%;
+  border-top: 4px solid #CCCCCC;
+  padding-top: 5px;
+  border-width: 100%;
+}
+
+#completionTime {
+  position: absolute;
+  left:16%;
+  font-family: Bryant Condensed, Arial;
+}
+
+#task-button {
+  position: absolute;
+  top: 11%;
+  left: 15%;
+  margin: 0.2rem 0rem 0.1rem 0rem;
+  background-color: white;
+  border-radius: 0.2rem;
+  width: 200px;
+  border: 0.25rem solid rgb(131, 131, 131);
+  padding: 1rem 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 20px;
+  font-family: Gadugi;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#task-button:hover {
+  cursor: pointer;
+  background-color: #e76f51;
+}
+
+.create-new-task-block {
+  display: none;
+  /* display: flex; */
+  background: #ffaf00;
+  width: 65%;
+  flex-direction: column;
+}
+
+.kanbanName input {
+  font-family: Gadugi, Arial, Lucida Grande, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  /* if that’s what you want... */
+  line-height: 1.4;
+  /* somewhat excessive */
+  color: #333333;
+  /* if that’s what you want, but it reduces legibility */
+  background: white;
+  /* always set background when you set color */
+  text-align: center;
+  border: none;
+  width: 70%;
+  box-shadow: 2px 2px 2px #f5f5f5;
+}

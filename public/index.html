@@ -1,233 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="home" content="Studbud">
-    <title>Studbud homepage</title>
-    <link href="scss/main.scss" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
-  </head>
-  
+  <meta charset="utf-8">
+  <meta name="home" content="Studbud">
+  <title>Studbud homepage</title>
+  <link href="scss/main.scss" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
 <body>
 
   <header>
-  <nav>
-    <img src="/public/images/logo.png" alt="Studbud" id="logo">
-        <a href='./index.html'><span>HOME</span></a>
-        <a href='./dictionary.html'><span>DICTIONARY</span></a>
-    
-      </nav>
-    </header>
-  
-    <div class="container">
-        <div class="kanban-heading">
-            <strong class="kanban-heading-text">Kanban Board</strong>
+    <nav>
+      <img src="/public/images/logo.png" alt="Studbud" id="logo">
+      <a href='./index.html'><span>HOME</span></a>
+      <a href='./dictionary.html'><span>DICTIONARY</span></a>
+
+    </nav>
+  </header>
+  <div class="container">
+    <div class="kanban-heading" id="kanban-heading">
+      <strong class="kanban-heading-text">Add Column</strong>
+    </div>
+    <button id="task-button"><span>Create new task</span></button>
+    <div class="kanban-board" id="kanbanBoard">
+      <div class="kanban-block" id="todo">
+        <div class="kanbanName"><input type="text" title="edit colunm name" value="To do"></div>
+        <div class="task-button-block">
+
         </div>
-        <div class="kanban-board">
-            <div class="kanban-block" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <div class="kanbanName"><strong>To Do</strong></div>
-                <div class="task-button-block">
-                    <button id="task-button"><span>Create new task</span></button>
-                </div>
 
-              <p id="emptyList">You have not added any tasks yet</p>
-                
-            </div>
-          
-            <div class="kanban-block" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <div class="kanbanName"><strong>In Progress</strong></div>
-            </div>
-          
-            <div class="kanban-block" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <div class="kanbanName"><strong>Done</strong></div>
-            </div>
+        <p id="emptyList">You have not added any tasks yet</p>
 
-          <div class="kanban-block" id="review" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div class="kanbanName"><strong>Review</strong></div>
-            </div>
-
-        <div class="create-new-task-block" id="create-new-task-block">
-
-        
-      <form id="taskform">
-        <span class="form-row">
-        <label class="form-row-label" for="task">Task:</label>
-        <input class="form-row-input" type="text" name="task" id="taskInput" required>
-        </span>
-  
-        <br>
-      <!-- Date input -->
-        <span class="form-row">
-        <label class="form-row-label" for="dueDate">Due Date: </label>
-        <input class="form-row-input" type="date" name="dueDate" id="dueDateInput">
-        </span>
-        
-        <br>
-      <!-- Time input -->
-        <span class="form-row">
-      <label class="form-row-label" for="completionTime">Completion Time: </label>
-        <input class="form-row-input" type="time" name="completionTime" id="completionTimeInput">
-        </span>
-  
-        <br>
-
-        <span class="form-row">
-      <label class="form-row-label" for="estimatedTime">Estimated completion time (in mins):</label>
-      <input class="form-row-input" type="number" name="estimatedTime" id="estimatedTimeInput">
-        </span>
-      <!-- Priority -->
-      <br>
-
-        <span class="form-row">
-  
-      <label class="form-row-label" for="priority">Task Priority:</label>
-      <select class="form-row-input" name="prority" id="priorityInput">
-        <option value="">Select one</option>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-        </span>
-
-        <select class="form-row-input" name="task-status" id="task-status">
-                        <option value="todo">To Do</option>
-                        <option value="inprogress">In Progress</option>
-                        <option value="done">Done</option>
-                        <option value="review">Review</option>
-                    </select>
-  
-      <br>
-
-        <span class="form-row-buttons">
-                    <button id="edit-button"><span>Edit</span></button>
-                    <button type="submit" id="save-button" ><span>Save</span></button>
-                    <button id="cancel-button"><span>Cancel</span></button>
-                </span>
-  
-      </form>
-      <div id="tasklist">
-        
-        <ul></ul>
       </div>
-        
+
+      <div class="kanban-block" id="inprogress">
+        <div class="kanbanName"><input type="text" title="edit colunm name" value="In progress"></div>
+      </div>
+
+      <div class="kanban-block" id="done">
+        <div class="kanbanName"><input type="text" title="edit colunm name" value="Done"></div>
+      </div>
+
+      <div class="kanban-block" id="review">
+        <div class="kanbanName"><input type="text" title="edit colunm name" value="Reivew"></div>
+      </div>
+
+      <div class="create-new-task-block" id="create-new-task-block">
+
+
+        <form id="taskform">
+          <span class="form-row">
+            <label class="form-row-label" for="task">Task:</label>
+            <input class="form-row-input" type="text" name="task" id="taskInput" required>
+          </span>
+
+          <br>
+          <!-- Date input -->
+          <span class="form-row">
+            <label class="form-row-label" for="dueDate">Due Date: </label>
+            <input class="form-row-input" type="date" name="dueDate" id="dueDateInput">
+          </span>
+
+          <br>
+          <!-- Time input -->
+          <span class="form-row">
+            <label class="form-row-label" for="completionTime">Completion Time: </label>
+            <input class="form-row-input" type="time" name="completionTime" id="completionTimeInput">
+          </span>
+
+          <br>
+
+          <span class="form-row">
+            <label class="form-row-label" for="estimatedTime">Estimated completion time (in mins):</label>
+            <input class="form-row-input" type="number" name="estimatedTime" id="estimatedTimeInput">
+          </span>
+          <!-- Priority -->
+          <br>
+
+          <span class="form-row">
+
+            <label class="form-row-label" for="priority">Task Priority:</label>
+            <select class="form-row-input" name="prority" id="priorityInput">
+              <option value="">Select one</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </span>
+
+          <select class="form-row-input" name="task-status" id="task-status">
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="done">Done</option>
+            <option value="review">Review</option>
+          </select>
+
+          <br>
+
+          <span class="form-row-buttons">
+            <button id="edit-button"><span>Edit</span></button>
+            <button type="submit" id="save-button"><span>Save</span></button>
+            <button id="cancel-button"><span>Cancel</span></button>
+          </span>
+
+        </form>
+        <div id="tasklist">
+
+          <ul></ul>
+        </div>
+
+      </div>
+
+
+      <div class="tab">
+
+
+
+        <div id="stopwatch" class="stopwatch">
+
+          <div id="timerSwitch">
+
+            <button id="stopwatchSwitch">Stopwatch</button>
+          </div>
+          <div class="timerDisplay">
+            00 : 00 : 00 : 000
+          </div>
+          <div class="stopwatch-buttons">
+            <button id="pauseTimer">PAUSE</button>
+            <button id="startTimer">START</button>
+            <button id="resetTimer">RESET</button>
           </div>
 
-
-            <div class="tab">
-
-              
-
-              <div id= "stopwatch" class="stopwatch">
-                
-                <div id="timerSwitch">
- 
-                <button id="stopwatchSwitch">Stopwatch</button>
-              </div>
-                      <div class="timerDisplay">
-                        00 : 00 : 00 : 000
-                     </div>
-                     <div class="stopwatch-buttons">
-                      <button id="pauseTimer">PAUSE</button>
-                      <button id="startTimer">START</button>
-                      <button id="resetTimer">RESET</button>
-                    </div>
-       
-                    </div>
-
-      
-
-                  <div id = "pomodoro" class="pomodoro">
-                    
-                    <div id="timerSwitch">
- 
-                    <button id="pomodoroSwitch">Pomodoro Timer</button>
-                    </div>
-      
-            <progress id="js-progress" value="0"></progress>
-            <div class="progress-bar"></div>
-            <div class="timer">
-              <div class="button-group mode-buttons" id="js-mode-buttons">
-                <button
-                  data-mode="pomodoro"
-                  class="button active mode-button"
-                  id="js-pomodoro"
-                >
-                  Pomodoro
-                </button>
-                <button
-                  data-mode="shortBreak"
-                  class="button mode-button"
-                  id="js-short-break"
-                >
-                  Short break
-                </button>
-                <button
-                  data-mode="longBreak"
-                  class="button mode-button"
-                  id="js-long-break"
-                >
-                  Long break
-                </button>
-              </div>
-              <div class="clock" id="js-clock">
-                <span id="js-minutes">25</span>
-                <span class="separator">:</span>
-                <span id="js-seconds">00</span>
-              </div>
-              <button class="main-button" data-action="start" id="js-btn">
-                Start
-              </button>
-            </div>
-      
-                    
-            </div>
-        
-        <div class="help"><i class="material-icons" style="font-size:40px;">timer</i></div>
         </div>
 
 
-      </body>
 
-        <footer>
+        <div id="pomodoro" class="pomodoro">
 
-          <div class="music-container">
-            <div class="music-info">
-              <h4 id="title"> song 1 </h4>
-              <div class="progress-container">
-                <div class="duration">
-                  <input type="range" min="0" max="100" value="0" id="duration_slider">
-               </div>
-              </div>
-            </div>
+          <div id="timerSwitch">
 
-            <audio id="audio"></audio>
+            <button id="pomodoroSwitch">Pomodoro Timer</button>
+          </div>
 
-            <div class="image-container" id="imgContainer">
-              <img class="cover-image" alt="music cover" id="cover">
-            </div>
-
-            <div class="music-nav">
-              <button id="prev" class="before-btn">
-                <i class="material-icons"  style="font-size:40px;">first_page</i>
+          <progress id="js-progress" value="0"></progress>
+          <div class="progress-bar"></div>
+          <div class="timer">
+            <div class="button-group mode-buttons" id="js-mode-buttons">
+              <button data-mode="pomodoro" class="button active mode-button" id="js-pomodoro">
+                Pomodoro
               </button>
-              <button id="play" class="play-btn" >
-                <i class="material-icons"  style="font-size:60px;">play_circle</i>
+              <button data-mode="shortBreak" class="button mode-button" id="js-short-break">
+                Short break
               </button>
-              <button id="next" class="next-btn">
-                <i class="material-icons"  style="font-size:40px;">last_page</i>
+              <button data-mode="longBreak" class="button mode-button" id="js-long-break">
+                Long break
               </button>
             </div>
+            <div class="clock" id="js-clock">
+              <span id="js-minutes">25</span>
+              <span class="separator">:</span>
+              <span id="js-seconds">00</span>
+            </div>
+            <button class="main-button" data-action="start" id="js-btn">
+              Start
+            </button>
+          </div>
+        </div>
 
-            <!-- <div class="duration">
+        <div class="help"><i class="material-icons" style="font-size:40px;">timer</i></div>
+      </div>
+
+</body>
+
+<footer>
+
+  <div class="music-container">
+    <div class="music-info">
+      <h4 id="songTitle"></h4>
+      <div class="progress-container">
+        <div class="duration">
+          <!-- <input type="range" min="0" max="100" value="0" id="duration_slider"> -->
+        </div>
+      </div>
+    </div>
+    <audio autoplay id="audio" type="audio/mpeg"></audio>
+    <!-- <audio id="audio"></audio> -->
+
+    <div class="image-container" id="imgContainer">
+      <img class="cover-image" src="/public/images/forest.jpg" alt="music cover" id="cover">
+    </div>
+
+    <div class="music-nav">
+      <button id="previous" class="before-btn">
+        <i class="material-icons" style="font-size:40px;">first_page</i>
+      </button>
+      <button id="play" class="play-btn">
+        <i class="material-icons" style="font-size:60px;">play_circle</i>
+      </button>
+      <button id="next" class="next-btn">
+        <i class="material-icons" style="font-size:40px;">last_page</i>
+      </button>
+    </div>
+
+    <div class="playlist">
+      <button id="list" class="list-btn">
+        <i class="material-icons" style="font-size:40px;">list</i>
+      </button>
+
+      <ul class="song-list">
+        <li data-src="/public/music/forest.mp3" data-name="Forest" data-index="0"><span>Forest</span><span>02:18</span>
+        </li>
+        <li data-src="/public/music/just-relax.mp3" data-name="Just Relax" data-index="1"><span>Just
+            Relax</span><span>01:48</span></li>
+        <li data-src="/public/music/morning-garden.mp3" data-name="Morning Garden" data-index="2"><span>Morning
+            Garden</span><span>02:21</span></li>
+        <li data-src="/public/music/inspire.mp3" data-name="Inspire" data-index="3">
+          <span>Inspire</span><span>01:34</span>
+        </li>
+        <li data-src="/public/music/sunny.mp3" data-name="Sunny" data-index="4"><span>Sunny</span><span>01:12</span></li>
+      </ul>
+
+
+      <!-- <div class="duration">
               <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
            </div> -->
 
-          </div>
+    </div>
 
-          
-  </footer>
 
-          <script src="js/script.js" type="module">
-          </script>
+</footer>
+
+<script src="js/script.js" type="module">
+</script>
 
 </html>

@@ -1,5 +1,5 @@
 const toggler = document.querySelector('.help');
-const tab   = document.querySelector('.tab');
+const tab = document.querySelector('.tab');
 const icon = document.querySelector('.material-icons')
 
 /*
@@ -12,18 +12,18 @@ toggler.addEventListener('click', () => {
   icon.classList.toggle('active');
 })
 
-function switchTimer(){
+function switchTimer() {
 
   var x = document.getElementById("stopwatch");
-var z = document.getElementById("pomodoro")
+  var z = document.getElementById("pomodoro")
   if (x.style.display === "none") {
-        x.style.display = "block"
-      z.style.display = "none";
+    x.style.display = "block"
+    z.style.display = "none";
   } else {
-      z.style.display = "block";
-      x.style.display = "none";
+    z.style.display = "block";
+    x.style.display = "none";
   }
 }
 
- document.getElementById("stopwatchSwitch").addEventListener("click", switchTimer);
- document.getElementById("pomodoroSwitch").addEventListener("click", switchTimer);
+document.getElementById("stopwatchSwitch").addEventListener("click", switchTimer);
+document.getElementById("pomodoroSwitch").addEventListener("click", switchTimer);

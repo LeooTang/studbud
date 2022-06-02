@@ -1,85 +1,86 @@
-.pomodoro{
-      display: none;
-      background-color: #ffffff;
-      width: 40%;
-      min-width: 500px;
-      position: absolute;
-      transform: translate(-50%,-50%);
-      top: 50%;
-      left: 50%;
-      padding: 20px 0;
-      padding-bottom: 50px;
-      border-radius: 10px;
-  
-  }
-  
-  progress {
-    border-radius: 2px;
-    width: 80%;
-    height: 12px;
-    margin-left: 50px;
-  }
-  
-  .timer {
-    top: 50%;
-    left: 50%;
-    padding: 20px;
-     text-align: center;
-  }
-  
-  .clock {
-    margin-top: 50px;
-    margin-bottom: 30px;
-    font-size: 100px;
-    line-height: 1;
-    margin: auto;
-    font-family: Bryant Condensed, sans-serif;
-  }
-  
-  .mode-button {
-    font-size: 16px;
-    height: 28px;
-    cursor: pointer;
-    box-shadow: none;
-    font-weight: 300;
-    color: black;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background: none;
-  }
-  
-  .mode-button.active {
-    border-color: black;
-  }
-  
-  .main-button {
-    cursor: pointer;
-    box-shadow: rgb(235, 235, 235) 0px 6px 0px;
-    font-size: 22px;
-    height: 55px;
-    text-transform: uppercase;
-    color: hsl(175, 26%, 41%);
-    font-weight: bold;
-    width: 200px;
-    background-color: white;
-    border-width: initial;
-    border-style: none;
-    margin: 20px 0px 0px;
-    padding: 0px 12px;
-    border-radius: 4px;
-    transition: color 0.5s ease-in-out 0s;
-  }
-  
-  button:focus, button:active {
-    outline: none;
-  }
-  
-  .main-button.active {
-    transform: translateY(6px);
-    box-shadow: none;
-    outline: none;
-  }
-  
-  .hidden {
-    display: none;
-  }
+.pomodoro {
+  display: none;
+  background-color: #ffffff;
+  width: 40%;
+  min-width: 500px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 20px 0;
+  padding-bottom: 50px;
+  border-radius: 10px;
+
+}
+
+progress {
+  border-radius: 2px;
+  width: 80%;
+  height: 12px;
+  margin-left: 50px;
+}
+
+.timer {
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  text-align: center;
+}
+
+.clock {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 100px;
+  line-height: 1;
+  margin: auto;
+  font-family: Bryant Condensed, sans-serif;
+}
+
+.mode-button {
+  font-size: 16px;
+  height: 28px;
+  cursor: pointer;
+  box-shadow: none;
+  font-weight: 300;
+  color: black;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+}
+
+.mode-button.active {
+  border-color: black;
+}
+
+.main-button {
+  cursor: pointer;
+  box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+  font-size: 22px;
+  height: 55px;
+  text-transform: uppercase;
+  color: hsl(175, 26%, 41%);
+  font-weight: bold;
+  width: 200px;
+  background-color: white;
+  border-width: initial;
+  border-style: none;
+  margin: 20px 0px 0px;
+  padding: 0px 12px;
+  border-radius: 4px;
+  transition: color 0.5s ease-in-out 0s;
+}
+
+button:focus,
+button:active {
+  outline: none;
+}
+
+.main-button.active {
+  transform: translateY(6px);
+  box-shadow: none;
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}

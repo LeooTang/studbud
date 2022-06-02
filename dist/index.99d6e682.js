@@ -463,6 +463,35 @@ var _dictionary = require("./components/dictionary");
 var _localstorage = require("./localstorage");
 var _pomodoro = require("./components/pomodoro");
 var _musicplayer = require("./components/musicplayer");
+var x = document.getElementById("inprogress");
+var y = document.getElementById("done");
+var z = document.getElementById("create-new-task-block");
+var i = document.getElementById("review"); // const item = document.querySelector('.eachTask');
+ // item.addEventListener('dragstart', dragStart);
+ // x.addEventListener('dragover', allowDrop);
+ // x.addEventListener('drop', drop);
+ // const item = document.getElementsByClassName('task');
+ // item.addEventListener('dragstart', dragStart);
+ // function dragStart(ev) {
+ //     ev.dataTransfer.setData('text', ev.target.id);
+ // }
+ /* drop targets */  // const boxes = document.querySelectorAll('.kanban-block');
+ // boxes.forEach((box) => {
+ //     box.addEventListener('dragover', allowDrop);
+ //     box.addEventListener('drop', drop);
+ //   });
+ // function allowDrop(ev) {
+ //     ev.preventDefault();
+ // }
+ // function drop(ev) {
+ //     ev.preventDefault();
+ //     var data = ev.dataTransfer.getData('text');
+ //     // ev.currentTarget.appendChild(document.getElementById(data));
+ //     var z = document.createElement('div'); // is a node
+ //     // z.innerHTML = data;
+ //     z.innerHTML = data;
+ //     ev.currentTarget.appendChild(z);
+ // }
 
 },{"./components/tasklist":"8p0n0","./components/kanban":"ikPP4","./components/stopwatch":"cDUD9","./components/tab":"7tQzc","./components/dictionary":"7H6tn","./localstorage":"grXFK","./components/pomodoro":"cZcq5","./components/musicplayer":"6kgM4"}],"8p0n0":[function(require,module,exports) {
 const form = document.getElementById("taskform");
@@ -505,11 +534,13 @@ function addTask(taskDescription, dueDate, estimatedTime, priorityRating, comple
 function renderTask(task) {
     updateEmpty();
     // Create HTML elements
-    let item = document.createElement("li");
+    let item = document.createElement("div");
     item.setAttribute('data-id', task.id);
+    item.className = 'eachTask';
     var taskName = document.getElementById("taskInput").value;
     var dueDate = document.getElementById("dueDateInput").value;
-    item.innerHTML += `\n            <div class="task" id=taskName.toLowerCase().split(" ").join("")>\n                <span id=taskName>${taskName}</span>                \n                <br>\n                <span id=dueDate>${dueDate}</span>   \n            </div>`;
+    var completionTime = document.getElementById("completionTimeInput").value;
+    item.innerHTML += `\n            <div class="task" id="${taskName.toLowerCase().split(" ").join("")}" draggable="true">\n            <span id=taskName>${taskName}</span>                \n               <span id=completionTime>${completionTime}</span> \n                <br><br>\n                <span id=dueDate>${dueDate}</span>\n                \n            </div>`;
     var status = document.getElementById("task-status").value;
     switch(status){
         case 'todo':
@@ -529,6 +560,9 @@ function renderTask(task) {
     let delButtonText = document.createTextNode("Delete Task");
     delButton.appendChild(delButtonText);
     item.appendChild(delButton);
+    // item.setAttribute('draggable', true);
+    item.addEventListener('dragstart', dragStart);
+    item.addEventListener('ondragstart', dragStart);
     // Event Listeners for DOM elements
     delButton.addEventListener("click", function(event) {
         event.preventDefault();
@@ -551,19 +585,39 @@ function updateEmpty() {
     if (taskListArray.length > 0) document.getElementById('emptyList').style.display = 'none';
     else document.getElementById('emptyList').style.display = 'block';
 }
-
-},{}],"ikPP4":[function(require,module,exports) {
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+// add column
+function addColunm() {
+    let column = document.createElement("div");
+    column.className = 'kanban-block';
+    column.innerHTML += `<div class="kanbanName"><input type="text" \n  title="edit colunm name"\n  value="Unnamed"></div>`;
+    // append column to kanban container
+    kanbanBoard.appendChild(column);
 }
+document.getElementById("kanban-heading").addEventListener("click", addColunm);
+// const record = document.getElementsByClassName('task');
+// record.addEventListener('dragstart', dragStart);
+// const divs = document.querySelectorAll('.task');
+// divs.forEach(el => el.addEventListener('click', event => {
+//   div.addEventListener('dragstart', dragStart);
+// }));
+function dragStart(ev) {
+    ev.dataTransfer.setData('text', ev.target.id);
+}
+const boxes = document.querySelectorAll('.kanban-block');
+boxes.forEach((box)=>{
+    box.addEventListener('dragover', allowDrop);
+    box.addEventListener('drop', drop);
+});
 function allowDrop(ev) {
     ev.preventDefault();
 }
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
+    var data = ev.dataTransfer.getData('text');
     ev.currentTarget.appendChild(document.getElementById(data));
 }
+
+},{}],"ikPP4":[function(require,module,exports) {
 function createTask() {
     var x = document.getElementById("inprogress");
     var y = document.getElementById("done");
@@ -581,22 +635,27 @@ function createTask() {
         z.style.display = "flex";
     }
 }
-function saveTask() {
-    updateEmpty();
-    // var saveButton = document.getElementById("save-button");
-    // var editButton = document.getElementById("edit-button");
-    // if (saveButton.style.display === "none") {
-    //     saveButton.style.display = "block";
-    //     editButton.style.display = "none";
-    // } else{
-    //     saveButton.style.display = "none";
-    //     editButton.style.display = "block";
-    // }
-    let todo = document.getElementById("todo");
-    var taskName = document.getElementById("taskInput").value;
-    var othername = document.getElementById("dueDateInput").value;
-    todo.innerHTML += `\n    <div class="task" id="${taskName.toLowerCase().split(" ").join("")}" draggable="true" ondragstart="drag(event)">\n        <span id=taskName>${taskName}</span>\n        <br>\n        <span id=otherName>${othername}</span>\n    </div>`;
-}
+// function saveTask(){
+//   updateEmpty();
+//     // var saveButton = document.getElementById("save-button");
+//     // var editButton = document.getElementById("edit-button");
+//     // if (saveButton.style.display === "none") {
+//     //     saveButton.style.display = "block";
+//     //     editButton.style.display = "none";
+//     // } else{
+//     //     saveButton.style.display = "none";
+//     //     editButton.style.display = "block";
+//     // }
+//     let todo = document.getElementById("todo");
+//     var taskName = document.getElementById("taskInput").value 
+//       var othername = document.getElementById("dueDateInput").value;
+//     todo.innerHTML += `
+//     <div class="task" id="${taskName.toLowerCase().split(" ").join("")}" draggable="true" ondragstart="drag(event)">
+//         <span id=taskName>${taskName}</span>
+//         <br>
+//         <span id=otherName>${othername}</span>
+//     </div>`  
+// }
 function editTask() {
     var saveButton = document.getElementById("save-button");
     var editButton = document.getElementById("edit-button");
@@ -798,16 +857,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 },{}],"6kgM4":[function(require,module,exports) {
-const musicContainer = document.getElementById('music-container');
-const play = document.getElementById('play');
-const previous = document.getElementById('prev');
-const next = document.getElementById('next');
-const slider = document.getElementById('progress');
-const progressContainer = document.getElementById('progress-container');
-const title = document.getElementById('title');
-const track_image = document.getElementById('cover');
-const currTime = document.querySelector('#currTime');
-const durTime = document.querySelector('#durTime');
+const audio = document.querySelector('audio');
+const playBtn = document.querySelector('#play');
+const preveBtn = document.querySelector('#previous');
+const nextBtn = document.querySelector('#next');
+const songList = document.querySelector('.song-list');
+const title = document.querySelector('#songTitle');
+const record = document.querySelector('.cover-image');
 const toggler = document.querySelector('.play-btn');
 const tab = document.querySelector('.cover-image');
 /*
@@ -816,133 +872,64 @@ const tab = document.querySelector('.cover-image');
  */ toggler.addEventListener('click', ()=>{
     tab.classList.toggle('active');
 });
-let timer;
-let autoplay = 0;
-let index_no = 0;
-let Playing_song = false;
-//create a audio Element
-let track = document.createElement('audio');
-//All songs list
-let All_song = [
-    {
-        name: "forest",
-        path: "music/forest.mp3",
-        img: 'public/images/1.jpg'
-    },
-    {
-        name: "just relax",
-        path: "public/music/just relax.mp3",
-        img: "public/images/just relax.jpg"
-    },
-    {
-        name: "morning garden",
-        path: "public/music/morning garden.mp3",
-        img: "public/images/morning garden.jpg"
-    }, 
-];
-// function load the track
-function load_track(index_no1) {
-    clearInterval(timer);
-    // reset_slider();
-    track.src = All_song[index_no1].path;
-    title.innerHTML = All_song[index_no1].name;
-    cover.src = All_song[index_no1].img;
-    track.load();
-    timer = setInterval(range_slider, 1000);
-// total.innerHTML = All_song.length;
-// present.innerHTML = index_no + 1;
+document.querySelector('.list-btn').addEventListener('click', ()=>{
+    document.querySelector('.song-list').classList.toggle('active');
+});
+let songArray = [];
+let songHeading = '';
+let songIndex = 0;
+let isPlaying = false;
+function loadAudio() {
+    audio.src = songArray[songIndex];
+    let songListItems = songList.getElementsByTagName('li');
+    songHeading = songListItems[songIndex].getAttribute('data-name');
+    songTitle.innerText = songHeading;
+    for(i = 0; i < songListItems.length; i++)songListItems[i].classList.remove('active');
+    songList.getElementsByTagName('li')[songIndex].classList.add('active');
 }
-load_track(index_no);
-//mute sound function
-function mute_sound() {
-    track.volume = 0;
-    volume.value = 0;
-    volume_show.innerHTML = 0;
+function loadSongs() {
+    let songs = songList.getElementsByTagName('li');
+    for(i = 0; i < songs.length; i++)songArray.push(songs[i].getAttribute('data-src'));
+    loadAudio();
 }
-// checking.. the song is playing or not
-function justplay() {
-    if (Playing_song == false) playsong();
-    else pausesong();
-}
-// reset song slider
-function reset_slider() {
-    slider.value = 0;
-}
-// play song
-function playsong() {
-    track.play();
-    Playing_song = true;
+loadSongs();
+function playAudio() {
+    audio.play();
     play.innerHTML = '<i class="material-icons"  style="font-size:60px;">pause</i>';
+    isPlaying = true;
 }
-//pause song
-function pausesong() {
-    track.pause();
-    Playing_song = false;
+function pauseAudio() {
+    audio.pause();
     play.innerHTML = '<i class="material-icons"  style="font-size:60px;">play_circle</i>';
+    isPlaying = false;
 }
-// next song
-function next_song() {
-    if (index_no < All_song.length - 1) {
-        index_no += 1;
-        load_track(index_no);
-    } else {
-        index_no = 0;
-        load_track(index_no);
-    }
+function nextSong() {
+    songIndex++;
+    if (songIndex > songArray.length - 1) songIndex = 0;
+    loadAudio();
+//playAudio();
 }
-// previous song
-function previous_song() {
-    if (index_no > 0) {
-        index_no -= 1;
-        load_track(index_no);
-    // playsong();
-    } else {
-        index_no = All_song.length;
-        load_track(index_no);
-    // playsong();
-    }
+function previousSong() {
+    songIndex--;
+    if (songIndex < 0) songIndex = songArray.length - 1;
+    loadAudio();
+//playAudio();
 }
-// change volume
-function volume_change() {
-    volume_show.innerHTML = recent_volume.value;
-    track.volume = recent_volume.value / 100;
-}
-// change slider position 
-function change_duration() {
-    slider_position = track.duration * (slider.value / 100);
-    track.currentTime = slider_position;
-}
-// autoplay function
-function autoplay_switch() {
-    if (autoplay == 1) {
-        autoplay = 0;
-        auto_play.style.background = "rgba(255,255,255,0.2)";
-    } else {
-        autoplay = 1;
-        auto_play.style.background = "#FF8A65";
-    }
-}
-function range_slider() {
-    let position = 0;
-    // update slider position
-    if (!isNaN(track.duration)) {
-        position = track.currentTime * (100 / track.duration);
-        slider.value = position;
-    }
-    // function will run when the song is over
-    if (track.ended) {
-        play.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
-        if (autoplay == 1) {
-            index_no += 1;
-            load_track(index_no);
-            playsong();
-        }
-    }
-}
-document.getElementById("play").addEventListener("click", justplay);
-document.getElementById("prev").addEventListener("click", previous_song);
-document.getElementById("next").addEventListener("click", next_song);
-document.getElementById("duration_slider").addEventListener("click", change_duration);
+playBtn.addEventListener('click', function() {
+    if (isPlaying) pauseAudio();
+    else playAudio();
+}, false);
+preveBtn.addEventListener('click', function() {
+    previousSong();
+}, false);
+nextBtn.addEventListener('click', function() {
+    nextSong();
+}, false);
+songList.addEventListener('click', function(e) {
+    songIndex = e.target.closest('li').getAttribute('data-index');
+    loadAudio();
+// playAudio();
+}, false);
 
 },{}]},["dvZ2K","03Be6"], "03Be6", "parcelRequire60da")
 

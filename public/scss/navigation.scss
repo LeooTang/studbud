@@ -6,21 +6,21 @@ header {
 }
 
 nav {
-    display: flex;
+  display: flex;
 }
 
-nav img{
+nav img {
   height: 50px;
   width: 65px;
   margin: 5px 10px;
 }
 
 nav span {
-  margin: 0px; 
+  margin: 0px;
   color: white;
   width: 150px;
   height: 60px;
-  line-height:60px;
+  line-height: 60px;
   float: left;
   display: block;
   text-align: center;
@@ -28,10 +28,10 @@ nav span {
   justify-content: center;
   right: 300px;
   /*transition property*/
-  transition: background .3s, color .3s, cursor .3s;    
+  transition: background .3s, color .3s, cursor .3s;
 }
 
-nav span:hover{
+nav span:hover {
   color: #FFBB00;
   background-color: black;
   cursor: pointer;

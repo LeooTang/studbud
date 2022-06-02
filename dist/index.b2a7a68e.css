@@ -134,32 +134,42 @@ textarea {
 
 .kanban-heading {
   display: flex;
-  margin: 10px;
+  position: absolute;
+  margin: 30px 10px;
   flex-direction: row;
   justify-content: center;
-  font-family: sans-serif;
+  font-family: Gadugi;
+  left: 0px;
 }
 
 .kanban-board {
+  position: absolute;
+  top: 22%;
+  left: 10%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   font-family: sans-serif;
 }
 
 .kanban-heading-text {
-  font-size: 1.8rem;
-  background-color: tomato;
+  font-size: 20px;
+  background-color: #FFBB00;
   padding: 0.8rem 1.7rem;
   border-radius: 0.5rem;
-  margin: 1rem;
+  margin: 20px;
+}
+
+.kanban-heading-text:hover {
+  cursor: pointer;
+  background-color: #CCCCCC;
+  border: none;
 }
 
 .kanban-block,
 .create-new-task-block {
+  margin: 10px;
   padding: 0.6rem;
-  width: 22%;
-  min-width: 14rem;
+  width: 260px;
   min-height: 4.5rem;
   border-radius: 0.3rem;
   box-shadow: 3px 5px 3px #cfcfcf;
@@ -179,26 +189,65 @@ textarea {
 
 .task {
   background-color: white;
-  margin: 10px;
-  border: 0.1rem solid black;
+  margin: 15px;
+  border-left: 6px solid #ffaf00;
   border-radius: 0.2rem;
   padding: 0.5rem 0.2rem 0.5rem 2rem;
+  box-shadow: 3px 3px 3px #cfcfcf;
+}
+
+.eachTask button {
+  margin-left: 65%;
+  background-color: #CCCCCC;
+  height: 20px;
+  font-size: 10px;
+  border-radius: 0.2rem;
+  font-family: Bryant Condensed, Arial;
 }
 
 #taskName {
+  font-family: Bryant Condensed, Arial;
   font-weight: bold;
+  font-size: 18px;
+}
+
+#dueDate {
+  position: relative;
+  font-family: Bryant Condensed, Arial;
+  font-size: 15px;
+  color: #e76f51;
+  right: 0%;
+  border-top: 4px solid #CCCCCC;
+  padding-top: 5px;
+  border-width: 100%;
+}
+
+#completionTime {
+  position: absolute;
+  left: 16%;
+  font-family: Bryant Condensed, Arial;
 }
 
 #task-button {
+  position: absolute;
+  top: 11%;
+  left: 15%;
   margin: 0.2rem 0rem 0.1rem 0rem;
   background-color: white;
   border-radius: 0.2rem;
-  width: 100%;
-  border: 0.25rem solid black;
-  padding: 0.5rem 2.7rem;
+  width: 200px;
+  border: 0.25rem solid rgb(131, 131, 131);
+  padding: 1rem 0.5rem;
   border-radius: 0.3rem;
-  font-size: 1rem;
+  font-size: 20px;
+  font-family: Gadugi;
+  font-weight: bold;
   cursor: pointer;
+}
+
+#task-button:hover {
+  cursor: pointer;
+  background-color: #e76f51;
 }
 
 .create-new-task-block {
@@ -207,6 +256,23 @@ textarea {
   background: #ffaf00;
   width: 65%;
   flex-direction: column;
+}
+
+.kanbanName input {
+  font-family: Gadugi, Arial, Lucida Grande, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  /* if that’s what you want... */
+  line-height: 1.4;
+  /* somewhat excessive */
+  color: #333333;
+  /* if that’s what you want, but it reduces legibility */
+  background: white;
+  /* always set background when you set color */
+  text-align: center;
+  border: none;
+  width: 70%;
+  box-shadow: 2px 2px 2px #f5f5f5;
 }
 
 .help {
@@ -426,7 +492,8 @@ progress {
   transition: color 0.5s ease-in-out 0s;
 }
 
-button:focus, button:active {
+button:focus,
+button:active {
   outline: none;
 }
 
@@ -508,7 +575,61 @@ button:focus, button:active {
   margin: 0 10px;
 }
 
-.play-btn, .before-btn, .next-btn {
+.play-btn,
+.before-btn,
+.next-btn {
+  background-color: #f8f5eb;
+  border: 0;
+  color: orange;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.playlist {
+  position: absolute;
+  right: 3%;
+  bottom: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.song-list {
+  position: absolute;
+  background-color: #f8f5eb;
+  bottom: 80px;
+  right: 10%;
+  height: 150px;
+  width: 300px;
+  border: 5px solid #DDD;
+  display: none;
+}
+
+.song-list.active {
+  display: block;
+}
+
+.playlist ul {
+  overflow-y: scroll;
+  padding: 0 5px;
+}
+
+.playlist ul li {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-bottom: 1px solid #DDD;
+}
+
+.playlist ul li.active {
+  font-weight: bold;
+}
+
+.list-btn {
   background-color: #f8f5eb;
   border: 0;
   color: orange;
@@ -548,5 +669,196 @@ button:focus, button:active {
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar {
+  box-shadow: inset 0 0 5px #CCC;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FFBB00;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e76f51;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 900px;
+}
+
+::selection {
+  color: #fff;
+  background: #FFBB00;
+}
+
+.wrapper {
+  width: 420px;
+  border-radius: 7px;
+  background: #fff;
+  padding: 25px 28px 45px;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
+}
+
+.wrapper header {
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.wrapper .search {
+  position: relative;
+  margin: 35px 0 18px;
+}
+
+.search input {
+  height: 53px;
+  width: 80%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 0 42px;
+  border: 1px solid #999;
+}
+
+.search input:focus {
+  padding: 0 41px;
+  border: 2px solid #FFBB00;
+}
+
+.search input::placeholder {
+  color: #B8B8B8;
+}
+
+.search :where(i, span) {
+  position: absolute;
+  top: 50%;
+  color: #999;
+  transform: translateY(-50%);
+}
+
+.search i {
+  left: 18px;
+  pointer-events: none;
+  font-size: 16px;
+}
+
+.search input:focus ~ i {
+  color: #FFBB00;
+}
+
+.search span {
+  right: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+}
+
+.search input:valid ~ span {
+  display: block;
+}
+
+.wrapper .info-text {
+  font-size: 13px;
+  color: #9A9A9A;
+  margin: -3px 0 -10px;
+}
+
+.wrapper.active .info-text {
+  display: none;
+}
+
+.info-text span {
+  font-weight: 500;
+}
+
+.wrapper ul {
+  height: 0;
+  opacity: 0;
+  padding-right: 1px;
+  overflow-y: hidden;
+  transition: all 0.2s ease;
+}
+
+.wrapper.active ul {
+  opacity: 1;
+  height: 360px;
+}
+
+.wrapper ul li {
+  display: flex;
+  list-style: none;
+  margin-bottom: 14px;
+  align-items: center;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #D9D9D9;
+  justify-content: space-between;
+}
+
+ul li:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+ul .word p {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+ul .word span {
+  font-size: 12px;
+  color: #989898;
+}
+
+ul .word i {
+  color: #999;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+ul .content {
+  max-height: 215px;
+  overflow-y: auto;
+}
+
+ul .content::-webkit-scrollbar {
+  width: 0px;
+}
+
+.content li .details {
+  padding-left: 10px;
+  border-radius: 4px 0 0 4px;
+  border-left: 3px solid #FFBB00;
+}
+
+.content li p {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.content li span {
+  font-size: 15px;
+  color: #7E7E7E;
+}
+
+.content .synonyms .list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content .synonyms span {
+  cursor: pointer;
+  margin-right: 5px;
+  text-decoration: underline;
 }
 /*# sourceMappingURL=index.b2a7a68e.css.map */

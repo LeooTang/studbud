@@ -1,17 +1,17 @@
 .music-container {
     background-color: #f8f5eb;
     border-radius: 15px;
-    box-shadow: 0 20px 20px 0 rgba(252,169,169,0.6);
-    display:flex;
+    box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
+    display: flex;
     padding: 20px 30px;
     position: relative;
     margin-top: 20px;
-    z-index:2;
+    z-index: 2;
 }
 
 .image-container {
-   position: relative;
-   width: 110px;
+    position: relative;
+    width: 110px;
 }
 
 .image-container::after {
@@ -24,91 +24,165 @@
     bottom: 40%;
     border-radius: 50%;
     transform: translate(-50%, -50%);
- }
+}
 
-.cover-image{
+.cover-image {
     width: inherit;
     height: 110px;
     border-radius: 50%;
     object-fit: cover;
     position: absolute;
     bottom: 0;
-    left: 0;   
+    left: 0;
     animation: none;
- }
+}
 
- .cover-image.active{
+.cover-image.active {
     animation: rotate 3s linear infinite;
-    }
+}
+
 //  .music-container.play .image-container img {
 //      animation-play-state: running;
 //  }
 
- @keyframes rotate {
-     from {
-         transform: rotate(0deg);
-     }
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
 
-     to {
-         transform: rotate(360deg);
-     }
- }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
- .music-nav {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     z-index: 1;
+.music-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
 
- }
+}
 
- .action-btn {
-     background-color: #f8f5eb;
-     border: 0;
-     color: orange;
-     font-size: 20px;
-     cursor:pointer;
-     padding: 10px;
-     margin:0 10px;
- }
- .play-btn , .before-btn , .next-btn{
+.action-btn {
     background-color: #f8f5eb;
     border: 0;
     color: orange;
     font-size: 20px;
-    cursor:pointer;
+    cursor: pointer;
     padding: 10px;
-    margin:0 10px;
+    margin: 0 10px;
 }
 
- .action-btn:focus{
-     outline: 0;
- }
+.play-btn,
+.before-btn,
+.next-btn {
+    background-color: #f8f5eb;
+    border: 0;
+    color: orange;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 10px;
+}
 
- .music-info {
-     background-color: #f8f5eb;
-     border-radius: 15px 15px 0 0;
-     position: absolute;
-     top: 5px;
-     left: 20%;
-     width: calc(100% - 40px);
-     padding: 10px 10px 10px 150px;
- }
+.playlist {
+    position: absolute;
+    right: 3%;
+    bottom: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
 
- .progress-container {
+.song-list {
+    position: absolute;
+    background-color: #f8f5eb;
+    bottom: 80px;
+    right: 10%;
+    height: 150px;
+    width: 300px;
+    border: 5px solid #DDD;
+    display: none;
+}
+
+.song-list.active {
+    display: block;
+}
+
+.playlist ul {
+    overflow-y: scroll;
+    padding: 0 5px;
+}
+
+.playlist ul li {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-bottom: 1px solid #DDD;
+}
+
+.playlist ul li.active {
+    font-weight: bold;
+}
+
+.list-btn {
+    background-color: #f8f5eb;
+    border: 0;
+    color: orange;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.action-btn:focus {
+    outline: 0;
+}
+
+.music-info {
+    background-color: #f8f5eb;
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    top: 5px;
+    left: 20%;
+    width: calc(100% - 40px);
+    padding: 10px 10px 10px 150px;
+}
+
+.progress-container {
     background: #fff;
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
     width: 50%;
-	outline: none;
-	height: 8px;
-  }
-  
-  .duration {
+    outline: none;
+    height: 8px;
+}
+
+.duration {
     background-color: #fe8daa;
     border-radius: 5px;
     height: 100%;
     width: 0%;
     transition: width 0.1s linear;
-  }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar {
+    box-shadow: inset 0 0 5px #CCC;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FFBB00;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #e76f51;
+}

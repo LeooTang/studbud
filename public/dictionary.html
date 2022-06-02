@@ -1,65 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="home" content="Studbud">
-    <title>Studbud dictionary</title>
-    <link href="scss/main.scss" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
-  </head>
-  
+  <meta charset="utf-8">
+  <meta name="home" content="Studbud">
+  <title>Studbud dictionary</title>
+  <link href="scss/main.scss" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
 <body>
 
   <header>
-  <nav>
-    <img src="/public/images/logo.png" alt="Studbud" id="logo">
-        <a href='./index.html'><span>HOME</span></a>
-        <a href='./dictionary.html'><span>DICTIONARY</span></a>
-    
-      </nav>
-    </header>
+    <nav>
+      <img src="/public/images/logo.png" alt="Studbud" id="logo">
+      <a href='./index.html'><span>HOME</span></a>
+      <a href='./dictionary.html'><span>DICTIONARY</span></a>
+
+    </nav>
+  </header>
+
+  <main>
 
     <div class="wrapper">
-        <h1>English Dictionary</h1>
-        <div class="search">
-          <input type="text" placeholder="Search a word" required spellcheck="false">
-          <i class="fas fa-search"></i>
-          <span class="material-icons">close</span>
-        </div>
-        <p class="info-text">Type any existing word and press enter to get meaning, example, synonyms, etc.</p>
-        <ul>
-          <li class="word">
-            <div class="details">
-              <p>__</p>
-              <span>_ _</span>
-            </div>
-            <i class="fas fa-volume-up"></i>
-          </li>
-          <div class="content">
-            <li class="meaning">
-              <div class="details">
-                <p>Meaning</p>
-                <span>___</span>
-              </div>
-            </li>
-            <li class="example">
-              <div class="details">
-                <p>Example</p>
-                <span>___</span>
-              </div>
-            </li>
-            <li class="synonyms">
-              <div class="details">
-                <p>Synonyms</p>
-                <div class="list"></div>
-              </div>
-            </li>
-          </div>
-        </ul>
+      <h1>English Dictionary</h1>
+      <div class="search">
+        <input type="text" placeholder="Search a word" required spellcheck="false">
+        <span class="material-icons">close</span>
+        <i class="material-icons" style="font-size:20px;">search</i>
       </div>
+      <p class="info-text">Type any existing word and press enter to get meaning, example, synonyms, etc.</p>
+      <ul>
+        <li class="word">
+          <div class="details">
+            <p>__</p>
+            <span>_ _</span>
+          </div>
+          <i class="fas fa-volume-up"></i>
+        </li>
+        <div class="content">
+          <li class="meaning">
+            <div class="details">
+              <p>Meaning</p>
+              <span>___</span>
+            </div>
+          </li>
+          <li class="example">
+            <div class="details">
+              <p>Example</p>
+              <span>___</span>
+            </div>
+          </li>
+          <li class="synonyms">
+            <div class="details">
+              <p>Synonyms</p>
+              <div class="list"></div>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </main>
 
-    <script src="js/components/dictionary.js" type="module">
-    </script>
+  <script src="js/components/dictionary.js" type="module">
+  </script>
 
 </body>
 

@@ -6,7 +6,7 @@
   font-size: 50px;
   line-height: 35px;
   color: white;
-  
+
   height: 40px;
   width: 40px;
   background-color: #FFBB00;
@@ -17,68 +17,69 @@
   border: 3px solid white;
   padding: 10px;
   /*transition property*/
-  transition: background .3s, border .3s,line-height .3s, cursor .3s, font-size .3s, height .3s, width .3s, right .3s;
+  transition: background .3s, border .3s, line-height .3s, cursor .3s, font-size .3s, height .3s, width .3s, right .3s;
 }
 
 .help:after {
-    content: "\00d7";
-    position: absolute;
-    right: 11px;
-    color: #FFBB00;
-    z-index: -1;
-  }
-  
-.help:hover {
-    border:2px solid grey; 
-    line-height: 35px;
-    font-size: 52px;
-    height: 42px;
-    width: 42px;
-    cursor: pointer;
-}
-  
-.tab {
-    position: fixed;
-    top:65px;
-    bottom: 0px ;
-    right: -60%;;
-    color: #005c9c;
-    background: white;
-    border:5px solid #FFBB00; 
-    width: 20%;
-    height: 70%;
-    padding: 100px;
-    display: flex;
-    flex-direction: column;
-    z-index: 10;
-  
-    /*transition property*/
-    transition: .3s right cubic-bezier(0.77, 0, 0.175, 1);
-}
-  
-.tab.active {
-    right: 0;
-}
-  
-.tab .form {
-    font-size: 15px;
+  content: "\00d7";
+  position: absolute;
+  right: 11px;
+  color: #FFBB00;
+  z-index: -1;
 }
 
-.help.active{
-    right: 26%;
-    background-color: rgba(0, 0, 0, 0);
-  }
-  
+.help:hover {
+  border: 2px solid grey;
+  line-height: 35px;
+  font-size: 52px;
+  height: 42px;
+  width: 42px;
+  cursor: pointer;
+}
+
+.tab {
+  position: fixed;
+  top: 65px;
+  bottom: 0px;
+  right: -60%;
+  ;
+  color: #005c9c;
+  background: white;
+  border: 5px solid #FFBB00;
+  width: 20%;
+  height: 70%;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+
+  /*transition property*/
+  transition: .3s right cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.tab.active {
+  right: 0;
+}
+
+.tab .form {
+  font-size: 15px;
+}
+
+.help.active {
+  right: 26%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .help .material-icons {
-    color: white;
+  color: white;
 }
 
 .help .material-icons.active {
-    color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
 }
 
-#timerSwitch{
-  position:fixed;
+#timerSwitch {
+  position: fixed;
   top: -30%;
   left: 20%;
   background-color: #FFBB00;
