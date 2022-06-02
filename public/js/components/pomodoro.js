@@ -1,16 +1,22 @@
+//createa timer variable for traditional pomodoro session
 const timer = {
   pomodoro: 25,
   shortBreak: 5,
   longBreak: 15,
   longBreakInterval: 4,
+  //create sessions variable to keep track of the number of pomodoro sessions
   sessions: 0,
 };
 
+//Declare an interval variable 
 let interval;
 
+//Eventlistener
 const mainButton = document.getElementById('js-btn');
 mainButton.addEventListener('click', () => {
+  //store the value of the data-action attribute on the button in an action variable
   const { action } = mainButton.dataset;
+  //check the value if it’s equal to 'start'
   if (action === 'start') {
     startTimer();
   } else {
@@ -22,14 +28,17 @@ const modeButtons = document.querySelector('#js-mode-buttons');
 modeButtons.addEventListener('click', handleMode);
 
 function getRemainingTime(endTime) {
+  //store the value of the difference between the current time and the end time in milliseconds
   const currentTime = Date.parse(new Date());
   const difference = endTime - currentTime;
 
+  //converted the value to an integer in base 10
   const total = Number.parseInt(difference / 1000, 10);
   const minutes = Number.parseInt((total / 60) % 60, 10);
   const seconds = Number.parseInt(total % 60, 10);
 
   return {
+    //stored the value
     total,
     minutes,
     seconds,
@@ -37,11 +46,14 @@ function getRemainingTime(endTime) {
 }
 
 function startTimer() {
+  //retrieve the timestamp of the current moment
   let { total } = timer.remainingTime;
   const endTime = Date.parse(new Date()) + total * 1000;
-
+  
+  //sessions incremented at the start of a pomodoro session
   if (timer.mode === 'pomodoro') timer.sessions++;
 
+  //change value of the data-action attribute & text content
   mainButton.dataset.action = 'stop';
   mainButton.textContent = 'stop';
   mainButton.classList.add('active');
@@ -53,7 +65,8 @@ function startTimer() {
     total = timer.remainingTime.total;
     if (total <= 0) {
       clearInterval(interval);
-
+      
+      //auto switch to the next session on completion of the current one
       switch (timer.mode) {
         case 'pomodoro':
           if (timer.sessions % timer.longBreakInterval === 0) {
@@ -65,20 +78,20 @@ function startTimer() {
         default:
           switchMode('pomodoro');
       }
-
+      
+      //display notice
       if (Notification.permission === 'granted') {
         const text =
           timer.mode === 'pomodoro' ? 'Get back to work!' : 'Take a break!';
         new Notification(text);
       }
 
-      document.querySelector(`[data-sound="${timer.mode}"]`).play();
-
       startTimer();
     }
   }, 1000);
 }
 
+//stop the timer
 function stopTimer() {
   clearInterval(interval);
 
@@ -87,6 +100,7 @@ function stopTimer() {
   mainButton.classList.remove('active');
 }
 
+//update the countdown portion of the application
 function updateClock() {
   const { remainingTime } = timer;
   const minutes = `${remainingTime.minutes}`.padStart(2, '0');
@@ -102,6 +116,7 @@ function updateClock() {
 }
 
 function switchMode(mode) {
+  //mode property is set to the current mode
   timer.mode = mode;
   timer.remainingTime = {
     total: timer[mode] * 60,
@@ -121,6 +136,7 @@ function switchMode(mode) {
 }
 
 function handleMode(event) {
+  //retrive value of the data-mode attribute from the target element
   const { mode } = event.target.dataset;
 
   if (!mode) return;
@@ -129,7 +145,9 @@ function handleMode(event) {
   stopTimer();
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
+  //request for granding display notification 
   if ('Notification' in window) {
     if (
       Notification.permission !== 'granted' &&
@@ -144,6 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-
+  //ensure that the mode and remainingTime properties are set on the timer object on page load
   switchMode('pomodoro');
 });

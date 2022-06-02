@@ -7,6 +7,7 @@ var completionTimeInput = document.getElementById("completionTimeInput");
 var estimatedTimeInput = document.getElementById("estimatedTimeInput");
 var priorityInput = document.getElementById("priorityInput");
 
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   let task = taskInput.value;
@@ -19,8 +20,10 @@ form.addEventListener("submit", function (event) {
   }
 })
 
+//create array for store tasks
 var taskListArray = [];
 
+//task detailed value
 function addTask(taskDescription, dueDate, estimatedTime, priorityRating, completionTime, completionStatus) {
   let d = new Date();
   let dateCreated = d.getFullYear();
@@ -128,15 +131,10 @@ function addColunm() {
   kanbanBoard.appendChild(column);
 }
 
+ // Event Listeners for DOM elements
 document.getElementById("kanban-heading").addEventListener("click", addColunm);
 
-// const record = document.getElementsByClassName('task');
-// record.addEventListener('dragstart', dragStart);
-// const divs = document.querySelectorAll('.task');
-// divs.forEach(el => el.addEventListener('click', event => {
-//   div.addEventListener('dragstart', dragStart);
-// }));
-
+// drag & drop
 function dragStart(ev) {
   ev.dataTransfer.setData('text', ev.target.id);
 }

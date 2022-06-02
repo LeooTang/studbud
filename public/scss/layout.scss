@@ -21,3 +21,15 @@ footer {
   border-radius: 15px;
   background-image: linear-gradient(0deg, rgb(247, 247, 247)23.8%, rgb(255, 217, 184)98%);
 }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  body {
+  height: 1500px;
+  display: flex;
+  }
+
+  nav{
+  width: 800px;
+  }
+}

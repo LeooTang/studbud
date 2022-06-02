@@ -455,6 +455,7 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"03Be6":[function(require,module,exports) {
+//main js file
 var _tasklist = require("./components/tasklist");
 var _kanban = require("./components/kanban");
 var _stopwatch = require("./components/stopwatch");
@@ -463,35 +464,6 @@ var _dictionary = require("./components/dictionary");
 var _localstorage = require("./localstorage");
 var _pomodoro = require("./components/pomodoro");
 var _musicplayer = require("./components/musicplayer");
-var x = document.getElementById("inprogress");
-var y = document.getElementById("done");
-var z = document.getElementById("create-new-task-block");
-var i = document.getElementById("review"); // const item = document.querySelector('.eachTask');
- // item.addEventListener('dragstart', dragStart);
- // x.addEventListener('dragover', allowDrop);
- // x.addEventListener('drop', drop);
- // const item = document.getElementsByClassName('task');
- // item.addEventListener('dragstart', dragStart);
- // function dragStart(ev) {
- //     ev.dataTransfer.setData('text', ev.target.id);
- // }
- /* drop targets */  // const boxes = document.querySelectorAll('.kanban-block');
- // boxes.forEach((box) => {
- //     box.addEventListener('dragover', allowDrop);
- //     box.addEventListener('drop', drop);
- //   });
- // function allowDrop(ev) {
- //     ev.preventDefault();
- // }
- // function drop(ev) {
- //     ev.preventDefault();
- //     var data = ev.dataTransfer.getData('text');
- //     // ev.currentTarget.appendChild(document.getElementById(data));
- //     var z = document.createElement('div'); // is a node
- //     // z.innerHTML = data;
- //     z.innerHTML = data;
- //     ev.currentTarget.appendChild(z);
- // }
 
 },{"./components/tasklist":"8p0n0","./components/kanban":"ikPP4","./components/stopwatch":"cDUD9","./components/tab":"7tQzc","./components/dictionary":"7H6tn","./localstorage":"grXFK","./components/pomodoro":"cZcq5","./components/musicplayer":"6kgM4"}],"8p0n0":[function(require,module,exports) {
 const form = document.getElementById("taskform");
@@ -511,7 +483,9 @@ form.addEventListener("submit", function(event) {
     let priorityRating = priorityInput.options[priorityInput.selectedIndex].value;
     if (task) addTask(task, dueDate, estimatedTime, priorityRating, completionTime, false);
 });
+//create array for store tasks
 var taskListArray = [];
+//task detailed value
 function addTask(taskDescription, dueDate, estimatedTime, priorityRating, completionTime, completionStatus) {
     let d = new Date();
     let dateCreated = d.getFullYear();
@@ -593,13 +567,9 @@ function addColunm() {
     // append column to kanban container
     kanbanBoard.appendChild(column);
 }
+// Event Listeners for DOM elements
 document.getElementById("kanban-heading").addEventListener("click", addColunm);
-// const record = document.getElementsByClassName('task');
-// record.addEventListener('dragstart', dragStart);
-// const divs = document.querySelectorAll('.task');
-// divs.forEach(el => el.addEventListener('click', event => {
-//   div.addEventListener('dragstart', dragStart);
-// }));
+// drag & drop
 function dragStart(ev) {
     ev.dataTransfer.setData('text', ev.target.id);
 }
@@ -753,38 +723,50 @@ function addToLocalStorage(task) {
 }
 
 },{}],"cZcq5":[function(require,module,exports) {
+//createa timer variable for traditional pomodoro session
 const timer = {
     pomodoro: 25,
     shortBreak: 5,
     longBreak: 15,
     longBreakInterval: 4,
+    //create sessions variable to keep track of the number of pomodoro sessions
     sessions: 0
 };
+//Declare an interval variable 
 let interval;
+//Eventlistener
 const mainButton = document.getElementById('js-btn');
 mainButton.addEventListener('click', ()=>{
+    //store the value of the data-action attribute on the button in an action variable
     const { action  } = mainButton.dataset;
+    //check the value if it’s equal to 'start'
     if (action === 'start') startTimer();
     else stopTimer();
 });
 const modeButtons = document.querySelector('#js-mode-buttons');
 modeButtons.addEventListener('click', handleMode);
 function getRemainingTime(endTime) {
+    //store the value of the difference between the current time and the end time in milliseconds
     const currentTime = Date.parse(new Date());
     const difference = endTime - currentTime;
+    //converted the value to an integer in base 10
     const total = Number.parseInt(difference / 1000, 10);
     const minutes = Number.parseInt(total / 60 % 60, 10);
     const seconds = Number.parseInt(total % 60, 10);
     return {
+        //stored the value
         total,
         minutes,
         seconds
     };
 }
 function startTimer() {
+    //retrieve the timestamp of the current moment
     let { total  } = timer.remainingTime;
     const endTime = Date.parse(new Date()) + total * 1000;
+    //sessions incremented at the start of a pomodoro session
     if (timer.mode === 'pomodoro') timer.sessions++;
+    //change value of the data-action attribute & text content
     mainButton.dataset.action = 'stop';
     mainButton.textContent = 'stop';
     mainButton.classList.add('active');
@@ -794,6 +776,7 @@ function startTimer() {
         total = timer.remainingTime.total;
         if (total <= 0) {
             clearInterval(interval);
+            //auto switch to the next session on completion of the current one
             switch(timer.mode){
                 case 'pomodoro':
                     if (timer.sessions % timer.longBreakInterval === 0) switchMode('longBreak');
@@ -802,21 +785,23 @@ function startTimer() {
                 default:
                     switchMode('pomodoro');
             }
+            //display notice
             if (Notification.permission === 'granted') {
                 const text = timer.mode === 'pomodoro' ? 'Get back to work!' : 'Take a break!';
                 new Notification(text);
             }
-            document.querySelector(`[data-sound="${timer.mode}"]`).play();
             startTimer();
         }
     }, 1000);
 }
+//stop the timer
 function stopTimer() {
     clearInterval(interval);
     mainButton.dataset.action = 'start';
     mainButton.textContent = 'start';
     mainButton.classList.remove('active');
 }
+//update the countdown portion of the application
 function updateClock() {
     const { remainingTime  } = timer;
     const minutes = `${remainingTime.minutes}`.padStart(2, '0');
@@ -829,6 +814,7 @@ function updateClock() {
     progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
 }
 function switchMode(mode) {
+    //mode property is set to the current mode
     timer.mode = mode;
     timer.remainingTime = {
         total: timer[mode] * 60,
@@ -842,17 +828,20 @@ function switchMode(mode) {
     updateClock();
 }
 function handleMode(event) {
+    //retrive value of the data-mode attribute from the target element
     const { mode  } = event.target.dataset;
     if (!mode) return;
     switchMode(mode);
     stopTimer();
 }
 document.addEventListener('DOMContentLoaded', ()=>{
+    //request for granding display notification 
     if ('Notification' in window) {
         if (Notification.permission !== 'granted' && Notification.permission !== 'denied') Notification.requestPermission().then(function(permission) {
             if (permission === 'granted') new Notification('Awesome! You will be notified at the start of each session');
         });
     }
+    //ensure that the mode and remainingTime properties are set on the timer object on page load
     switchMode('pomodoro');
 });
 
@@ -865,56 +854,55 @@ const songList = document.querySelector('.song-list');
 const title = document.querySelector('#songTitle');
 const record = document.querySelector('.cover-image');
 const toggler = document.querySelector('.play-btn');
-const tab = document.querySelector('.cover-image');
-/*
- * Toggles on and off the 'active' class on the menu
- * and the toggler button.
- */ toggler.addEventListener('click', ()=>{
-    tab.classList.toggle('active');
+const coverImg = document.querySelector('.cover-image');
+// active the cover image 
+toggler.addEventListener('click', ()=>{
+    coverImg.classList.toggle('active');
 });
 document.querySelector('.list-btn').addEventListener('click', ()=>{
     document.querySelector('.song-list').classList.toggle('active');
 });
-let songArray = [];
+let songArray = []; //set a array for storing song
 let songHeading = '';
-let songIndex = 0;
+let songIndex = 0; //initial index number
 let isPlaying = false;
 function loadAudio() {
-    audio.src = songArray[songIndex];
+    audio.src = songArray[songIndex]; // pass data src in array to audio src
     let songListItems = songList.getElementsByTagName('li');
-    songHeading = songListItems[songIndex].getAttribute('data-name');
-    songTitle.innerText = songHeading;
+    songHeading = songListItems[songIndex].getAttribute('data-name'); //pass value of data-name into songHeading
+    songTitle.innerText = songHeading; //pass songHeading into html which displays title of songs
+    //get each data value in the array
     for(i = 0; i < songListItems.length; i++)songListItems[i].classList.remove('active');
     songList.getElementsByTagName('li')[songIndex].classList.add('active');
 }
+//send the value of data-src into the array
 function loadSongs() {
     let songs = songList.getElementsByTagName('li');
     for(i = 0; i < songs.length; i++)songArray.push(songs[i].getAttribute('data-src'));
     loadAudio();
 }
-loadSongs();
+loadSongs(); // ready the songs
 function playAudio() {
-    audio.play();
-    play.innerHTML = '<i class="material-icons"  style="font-size:60px;">pause</i>';
+    audio.play(); //play audio src 
+    play.innerHTML = '<i class="material-icons"  style="font-size:60px;">pause</i>'; // change display icon
     isPlaying = true;
 }
 function pauseAudio() {
     audio.pause();
-    play.innerHTML = '<i class="material-icons"  style="font-size:60px;">play_circle</i>';
+    play.innerHTML = '<i class="material-icons"  style="font-size:60px;">play_circle</i>'; // change display icon
     isPlaying = false;
 }
 function nextSong() {
-    songIndex++;
+    songIndex++; // increase index
     if (songIndex > songArray.length - 1) songIndex = 0;
     loadAudio();
-//playAudio();
 }
 function previousSong() {
     songIndex--;
     if (songIndex < 0) songIndex = songArray.length - 1;
     loadAudio();
-//playAudio();
 }
+//Eventlistener
 playBtn.addEventListener('click', function() {
     if (isPlaying) pauseAudio();
     else playAudio();
@@ -928,7 +916,6 @@ nextBtn.addEventListener('click', function() {
 songList.addEventListener('click', function(e) {
     songIndex = e.target.closest('li').getAttribute('data-index');
     loadAudio();
-// playAudio();
 }, false);
 
 },{}]},["dvZ2K","03Be6"], "03Be6", "parcelRequire60da")
