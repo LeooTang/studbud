@@ -37,18 +37,9 @@ To make the function of the prototype web page more understandble, I **moved the
 1. According to the feedback from the tutor and peers, I modified the overall structure so that the web prototype is more achievable for me.
 2. Tutor's feedback mentioned that the **consistency** of color in my mock-up, so I removed some unneccessary color of my design.
 
-
 ## Challenges
 Due to the lack of knowledge of web design concepts and the shortfall of JavaScript skills, I had to make concessions in the design of some places. For example, the drag&drop function in the Kanbanboard has bugs, and the responsive screen is slightly rigid.
 
-![The drag&drop does not actually work due to the lack of JavaScript skills](/prototype/news1.png)
-# Web prototype
-
-As I said at the beginning, the primary purpose of the webpage is to give users the confidence to trust our charity to complete donations. The **Inquiry button** provided allows customers to ask the agency to solve their problems at any time, and users can contact the agency effectively and quickly without cumbersome operations. The **news** section allows customers to understand what the organization has done before and enhance credibility; the **comment box** at the bottom enables customers to comment on our activities at any time to increase interactivity. The combination of **video embedding** and character **pictures** can also increase realism and empathy.（Fritz，2019）
-
-*You can check all the screenshots of web-prototype in **prototype** folder.
-
-![prototype example](/prototype/home1.png)
 # Reflection
 ## What did well?
 The ideation and iteration phase showed an adequate concept exploration with multiple design principles and justifications. The overall prototype shows clear structure and hierarchy and looks neat with layout and clear explanations.
